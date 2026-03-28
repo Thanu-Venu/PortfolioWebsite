@@ -154,9 +154,9 @@ It reflects my interest in combining software engineering with AI-driven user ex
 
 ## 📬 Contact
 
-* GitHub: https://github.com/your-username
-* LinkedIn: https://linkedin.com/in/your-profile
-* Email: [your-email@example.com](mailto:your-email@example.com)
+* GitHub: https://github.com/Thanu-Venu
+* LinkedIn: https://linkedin.com/in/Thanushya-Venugoban
+* Email: [your-email@example.com](mailto:thanu.venu28@gmail.com)
 
 ---
 
