@@ -5,6 +5,7 @@ import Projects from "./pages/Projects";
 import TechStack from "./pages/TechStack";
 import Contact from "./pages/Contact";
 import Education from "./pages/Education";
+import FloatingChatButton from "./components/FloatingChatButton";
 function App() {
   return (
     <div className="relative bg-black text-white min-h-screen overflow-hidden">
@@ -21,6 +22,7 @@ function App() {
       <TechStack />
       <Education />
       <Contact />
+      <FloatingChatButton />
     </div>
   );
 }
