@@ -18,11 +18,14 @@ pip install -r requirements.txt
 
 ### 3. Configure API Key
 
-1. Open `.env` file in the backend folder
-2. Replace `your_gemini_api_key_here` with your actual API key:
-   ```
-   GEMINI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxx
-   ```
+1. Open `.env` file in the backend folder and set:
+  ```env
+  GEMINI_API_KEY=your_real_key
+  ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+  RATE_LIMIT_WINDOW_SECONDS=60
+  RATE_LIMIT_MAX_REQUESTS=20
+  CACHE_TTL_SECONDS=300
+  ```
 
 ### 4. Run the Backend
 
@@ -59,7 +62,26 @@ Accepts a message and returns an AI response
 **Response:**
 ```json
 {
-  "reply": "I'd be happy to tell you about Thanu's projects..."
+  "reply": "I'd be happy to tell you about Thanu's projects...",
+  "source": "gemini"
+}
+```
+
+### GET /metrics
+Returns lightweight runtime stats for monitoring.
+
+Example:
+```json
+{
+  "total_requests": 42,
+  "gemini_responses": 30,
+  "fallback_responses": 12,
+  "rate_limited_requests": 3,
+  "cache_hits": 10,
+  "cache_size": 7,
+  "rate_limit_window_seconds": 60,
+  "rate_limit_max_requests": 20,
+  "cache_ttl_seconds": 300
 }
 ```
 
@@ -67,12 +89,36 @@ Accepts a message and returns an AI response
 
 ✅ Google Gemini API Integration
 ✅ Portfolio-specific prompt engineering
-✅ CORS enabled for frontend integration
+✅ Configurable CORS for frontend integration
 ✅ Error handling with fallback messages
+✅ Per-IP rate limiting
+✅ In-memory response caching
+✅ Runtime metrics endpoint
 ✅ Environment variable protection for API key
+
+## Frontend Environment
+
+Set this in frontend environment for deployed backend URL:
+
+```env
+VITE_API_BASE_URL=https://your-backend-domain
+```
+
+If omitted, frontend defaults to `http://127.0.0.1:8000`.
+
+## Deployment Notes
+
+1. Deploy backend first (Render/Railway/VPS) and set backend env vars.
+2. Set `ALLOWED_ORIGINS` to your real frontend domain(s).
+3. Deploy frontend and set `VITE_API_BASE_URL` to backend URL.
+4. Verify:
+  - `GET /` works
+  - `POST /chat` returns `source: gemini` for healthy Gemini calls
+  - `GET /metrics` updates as traffic comes in
 
 ## Troubleshooting
 
 - **"GEMINI_API_KEY not found"**: Make sure `.env` file exists and has your API key
 - **Connection refused**: Ensure backend is running on http://127.0.0.1:8000
-- **CORS errors**: Already handled in main.py, should work with frontend
+- **CORS errors**: Add your deployed frontend URL to `ALLOWED_ORIGINS`
+- **Too many fallbacks**: Check `/metrics` and Gemini spend/rate limits
