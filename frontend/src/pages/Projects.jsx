@@ -140,18 +140,18 @@ function Projects() {
 
             <h3 className="text-2xl font-bold mb-8 text-gray-100">Mini Projects</h3>
 
-            <div className="relative px-12 sm:px-14 mb-20">
+            <div className="relative mx-auto mb-20 w-full max-w-[320px] px-2 sm:max-w-none sm:px-14">
                 <button
                     onClick={scrollLeft}
                     disabled={clampedIndex === 0}
-                    className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
+                    className="absolute left-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
                 >
                     ←
                 </button>
 
                 <div
                     className="overflow-hidden mx-auto"
-                    style={{ maxWidth: `${visibleCards * miniCardWidth + (visibleCards - 1) * cardGap}px` }}
+                    style={{ width: `${visibleCards * miniCardWidth + (visibleCards - 1) * cardGap}px` }}
                 >
                     <div
                         className="flex gap-4 transition-transform duration-500"
@@ -186,15 +186,15 @@ function Projects() {
                             </div>
                         ))}
                     </div>
-
-                    <button
-                        onClick={scrollRight}
-                        disabled={clampedIndex === maxIndex}
-                        className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
-                    >
-                        →
-                    </button>
                 </div>
+
+                <button
+                    onClick={scrollRight}
+                    disabled={clampedIndex === maxIndex}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
+                >
+                    →
+                </button>
             </div>
         </section>
     );
