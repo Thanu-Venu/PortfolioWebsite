@@ -1,19 +1,25 @@
 from fastapi import FastAPI
+from fastapi import Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
 import requests
+import time
+from collections import defaultdict, deque
 
 # Load environment variables
 load_dotenv()
 
 app = FastAPI()
 
+allowed_origins_raw = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
+ALLOWED_ORIGINS = [origin.strip() for origin in allowed_origins_raw.split(",") if origin.strip()]
+
 # Enable CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -27,11 +33,31 @@ if not GEMINI_API_KEY:
 # Gemini API endpoint (2.5-flash is available for new users)
 GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
+# Runtime protection knobs for public hosting.
+RATE_LIMIT_WINDOW_SECONDS = int(os.getenv("RATE_LIMIT_WINDOW_SECONDS", "60"))
+RATE_LIMIT_MAX_REQUESTS = int(os.getenv("RATE_LIMIT_MAX_REQUESTS", "20"))
+CACHE_TTL_SECONDS = int(os.getenv("CACHE_TTL_SECONDS", "300"))
+
+# In-memory stores.
+request_times_by_ip = defaultdict(deque)
+response_cache = {}
+metrics = {
+    "total_requests": 0,
+    "gemini_responses": 0,
+    "fallback_responses": 0,
+    "rate_limited_requests": 0,
+    "cache_hits": 0,
+}
+
 # Portfolio context for the AI
 PORTFOLIO_CONTEXT = """You are an AI assistant for Thanu's developer portfolio.
 
+CRITICAL FACT:
+- UCSC here means University of Colombo School of Computing, Sri Lanka.
+- Never expand UCSC as University of California, Santa Cruz.
+
 ABOUT THANU:
-- Software Engineering student (3rd year, ongoing degree from UCSC)
+- Bachelor of Science in Software Engineering student (3rd year, ongoing) at University of Colombo School of Computing (UCSC), Sri Lanka
 - Full-stack developer with focus on backend systems, scalable architectures, and AI integration
 - GPA: 3.55/4.0
 - A/L Results: 2AB (Physical Science Stream)
@@ -75,6 +101,46 @@ Be helpful, clear, and professional in responses."""
 
 class ChatRequest(BaseModel):
     message: str
+
+
+def get_client_ip(request: Request) -> str:
+    forwarded_for = request.headers.get("x-forwarded-for", "")
+    if forwarded_for:
+        return forwarded_for.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
+
+def is_rate_limited(client_ip: str, now: float) -> bool:
+    request_times = request_times_by_ip[client_ip]
+    cutoff = now - RATE_LIMIT_WINDOW_SECONDS
+
+    while request_times and request_times[0] < cutoff:
+        request_times.popleft()
+
+    if len(request_times) >= RATE_LIMIT_MAX_REQUESTS:
+        return True
+
+    request_times.append(now)
+    return False
+
+
+def get_cached_response(cache_key: str, now: float):
+    item = response_cache.get(cache_key)
+    if not item:
+        return None
+
+    if item["expires_at"] <= now:
+        del response_cache[cache_key]
+        return None
+
+    return item["value"]
+
+
+def put_cached_response(cache_key: str, value: dict, now: float) -> None:
+    response_cache[cache_key] = {
+        "value": value,
+        "expires_at": now + CACHE_TTL_SECONDS,
+    }
 
 
 def portfolio_fallback(user_message: str) -> str:
@@ -125,7 +191,8 @@ def portfolio_fallback(user_message: str) -> str:
 
     if any(k in msg for k in ["who is", "about thanu", "introduce"]):
         return (
-            "Thanu is a 3rd-year Computer Science undergraduate at UCSC (GPA 3.55/4.0), and an "
+            "Thanu is a 3rd-year Bachelor of Science in Software Engineering undergraduate at "
+            "University of Colombo School of Computing (UCSC), Sri Lanka (GPA 3.55/4.0), and an "
             "aspiring full-stack developer focused on backend systems, scalable architecture, and "
             "AI-driven applications."
         )
@@ -147,7 +214,8 @@ def portfolio_fallback(user_message: str) -> str:
 
     if any(k in msg for k in ["education", "study", "gpa", "university", "degree"]):
         return (
-            "Thanu is a 3rd-year Computer Science undergraduate (UCSC) with a current GPA of "
+            "Thanu is a 3rd-year Bachelor of Science in Software Engineering undergraduate at "
+            "University of Colombo School of Computing (UCSC), Sri Lanka, with a current GPA of "
             "3.55/4.0, expected to graduate in 2027 or 2028."
         )
 
@@ -168,12 +236,42 @@ def portfolio_fallback(user_message: str) -> str:
 def home():
     return {"message": "API running", "status": "Gemini chatbot ready"}
 
+
+@app.get("/metrics")
+def get_metrics():
+    return {
+        **metrics,
+        "cache_size": len(response_cache),
+        "rate_limit_window_seconds": RATE_LIMIT_WINDOW_SECONDS,
+        "rate_limit_max_requests": RATE_LIMIT_MAX_REQUESTS,
+        "cache_ttl_seconds": CACHE_TTL_SECONDS,
+    }
+
 @app.post("/chat")
-async def chat(req: ChatRequest):
+async def chat(req: ChatRequest, request: Request):
     try:
+        metrics["total_requests"] += 1
         user_message = req.message.strip()
         if not user_message:
             return {"reply": "Please enter a message so I can help you."}
+
+        now = time.time()
+        client_ip = get_client_ip(request)
+
+        if is_rate_limited(client_ip, now):
+            metrics["rate_limited_requests"] += 1
+            metrics["fallback_responses"] += 1
+            return {
+                "reply": "Too many requests in a short time. " + portfolio_fallback(user_message),
+                "source": "local_fallback",
+                "reason": "local_rate_limited"
+            }
+
+        cache_key = user_message.lower()[:600]
+        cached = get_cached_response(cache_key, now)
+        if cached:
+            metrics["cache_hits"] += 1
+            return {**cached, "reason": "cache_hit"}
 
         # Prepare the prompt
         full_prompt = f"""{PORTFOLIO_CONTEXT}
@@ -207,13 +305,17 @@ Respond helpfully."""
         if response.status_code == 200:
             data = response.json()
             reply = data.get("candidates", [{}])[0].get("content", {}).get("parts", [{}])[0].get("text", "No response")
-            return {
+            result = {
                 "reply": reply,
                 "source": "gemini"
             }
+            put_cached_response(cache_key, result, now)
+            metrics["gemini_responses"] += 1
+            return result
         elif response.status_code == 429:
             # Quota/rate-limit fallback so UI keeps working.
             print(f"Gemini 429 (quota/rate limited): {response.text}")
+            metrics["fallback_responses"] += 1
             return {
                 "reply": portfolio_fallback(user_message),
                 "source": "local_fallback",
@@ -221,6 +323,7 @@ Respond helpfully."""
             }
         else:
             print(f"API Error: {response.status_code} - {response.text}")
+            metrics["fallback_responses"] += 1
             return {
                 "reply": portfolio_fallback(user_message),
                 "source": "local_fallback",
@@ -229,6 +332,7 @@ Respond helpfully."""
 
     except Exception as e:
         print(f"Error: {str(e)}")
+        metrics["fallback_responses"] += 1
         return {
             "reply": "Something went wrong 😢 " + portfolio_fallback(req.message),
             "source": "local_fallback",
