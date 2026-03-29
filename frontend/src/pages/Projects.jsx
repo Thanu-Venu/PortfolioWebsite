@@ -110,7 +110,7 @@ function Projects() {
         <section id="Projects" className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-700/40 backdrop-blur-sm reveal">
             <div className="mb-12">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Projects</h2>
-                <div className="h-1 w-20 bg-white rounded-full shadow-[0_0_18px_rgba(255,255,255,0.35)]"></div>
+                <div className="h-1 w-20 rounded-full accent-line"></div>
             </div>
 
             <h3 className="text-2xl font-bold mb-8 text-gray-100">Featured Projects</h3>
