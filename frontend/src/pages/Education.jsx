@@ -6,7 +6,7 @@ function Education() {
                 Education & Certifications
             </h2>
 
-            <div className="h-1 w-20 bg-white rounded-full shadow-[0_0_18px_rgba(255,255,255,0.35)] mb-10"></div>
+            <div className="h-1 w-20 rounded-full accent-line mb-10"></div>
 
             {/* EDUCATION */}
             <div className="mb-16">
