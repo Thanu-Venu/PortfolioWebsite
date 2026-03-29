@@ -55,7 +55,7 @@ function FloatingChatButton() {
 
             {/* CHATBOX */}
             {open && (
-                <div className="chat-pop fixed bottom-24 right-4 z-50 origin-bottom-right sm:right-6">
+                <div className="chat-pop fixed bottom-24 left-4 right-4 z-50 origin-bottom sm:left-auto sm:right-6 sm:w-auto sm:origin-bottom-right">
                     <Chatbot />
                 </div>
             )}

@@ -106,7 +106,7 @@ function Chatbot() {
     };
 
     return (
-        <div className="flex flex-col h-[500px] w-96 bg-black/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+        <div className="flex flex-col h-[70vh] max-h-[500px] w-[calc(100vw-2rem)] max-w-sm sm:w-96 bg-black/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
             {/* Header */}
             <div className="border-b border-white/20 p-5 rounded-t-2xl bg-gradient-to-r from-white/10 to-white/5">
                 <div className="flex items-center justify-between gap-3">
