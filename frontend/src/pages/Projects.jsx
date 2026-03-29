@@ -92,6 +92,7 @@ function Projects() {
     const cardGap = 16;
     const cardStep = miniCardWidth + cardGap;
     const maxIndex = Math.max(miniProjects.length - visibleCards, 0);
+    const clampedIndex = Math.min(index, maxIndex);
 
     useEffect(() => {
         const handleResize = () => setVisibleCards(getVisibleCards());
@@ -99,12 +100,8 @@ function Projects() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    useEffect(() => {
-        setIndex((prev) => Math.min(prev, maxIndex));
-    }, [maxIndex]);
-
-    const scrollLeft = () => setIndex((prev) => Math.max(prev - 1, 0));
-    const scrollRight = () => setIndex((prev) => Math.min(prev + 1, maxIndex));
+    const scrollLeft = () => setIndex((prev) => Math.max(Math.min(prev, maxIndex) - 1, 0));
+    const scrollRight = () => setIndex((prev) => Math.min(Math.min(prev, maxIndex) + 1, maxIndex));
 
     return (
         <section id="Projects" className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-700/40 backdrop-blur-sm reveal">
@@ -146,7 +143,7 @@ function Projects() {
             <div className="relative px-12 sm:px-14 mb-20">
                 <button
                     onClick={scrollLeft}
-                    disabled={index === 0}
+                    disabled={clampedIndex === 0}
                     className="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
                 >
                     ←
@@ -158,7 +155,7 @@ function Projects() {
                 >
                     <div
                         className="flex gap-4 transition-transform duration-500"
-                        style={{ transform: `translateX(-${index * cardStep}px)` }}
+                        style={{ transform: `translateX(-${clampedIndex * cardStep}px)` }}
                     >
                         {miniProjects.map((project) => (
                             <div
@@ -192,7 +189,7 @@ function Projects() {
 
                     <button
                         onClick={scrollRight}
-                        disabled={index === maxIndex}
+                        disabled={clampedIndex === maxIndex}
                         className="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
                     >
                         →
