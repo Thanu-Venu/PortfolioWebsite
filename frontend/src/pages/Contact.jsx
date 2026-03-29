@@ -2,13 +2,15 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 function Contact() {
     return (
-        <div className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-800 flex flex-col justify-center items-center text-center">
+        <section id="Contact" className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80 flex flex-col justify-center items-center text-center reveal">
 
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
                 Contact
             </h2>
 
-            <p className="text-gray-400 mb-10 max-w-xl">
+            <div className="h-1 w-20 bg-white rounded-full shadow-[0_0_18px_rgba(255,255,255,0.35)] mb-8"></div>
+
+            <p className="text-gray-300 mb-10 max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm px-6 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
                 Feel free to reach out if you'd like to collaborate, discuss a project, or just connect.
             </p>
 
@@ -16,31 +18,33 @@ function Contact() {
             <div className="flex gap-6">
 
                 <a
-                    href="mailto:your-email@gmail.com"
-                    className="w-12 h-12 flex items-center justify-center border border-gray-700 rounded-full hover:bg-white hover:text-black transition duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+                    href="mailto:thanu.venu28@gmail.com"
+                    className="w-12 h-12 flex items-center justify-center border border-white/20 bg-white/[0.03] backdrop-blur-sm rounded-full hover:bg-white hover:text-black hover:border-white hover:shadow-[0_0_18px_rgba(255,255,255,0.35)] ui-interactive"
                 >
                     <FaEnvelope size={18} />
                 </a>
 
                 <a
-                    href="https://github.com/your-username"
+                    href="https://github.com/Thanu-Venu"
                     target="_blank"
-                    className="w-12 h-12 flex items-center justify-center border border-gray-700 rounded-full hover:bg-white hover:text-black transition duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+                    rel="noreferrer"
+                    className="w-12 h-12 flex items-center justify-center border border-white/20 bg-white/[0.03] backdrop-blur-sm rounded-full hover:bg-white hover:text-black hover:border-white hover:shadow-[0_0_18px_rgba(255,255,255,0.35)] ui-interactive"
                 >
                     <FaGithub size={18} />
                 </a>
 
                 <a
-                    href="https://linkedin.com/in/your-profile"
+                    href="https://www.linkedin.com/in/thanushya-venugoban/"
                     target="_blank"
-                    className="w-12 h-12 flex items-center justify-center border border-gray-700 rounded-full hover:bg-white hover:text-black transition duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+                    rel="noreferrer"
+                    className="w-12 h-12 flex items-center justify-center border border-white/20 bg-white/[0.03] backdrop-blur-sm rounded-full hover:bg-white hover:text-black hover:border-white hover:shadow-[0_0_18px_rgba(255,255,255,0.35)] ui-interactive"
                 >
                     <FaLinkedin size={18} />
                 </a>
 
             </div>
 
-        </div>
+        </section>
     );
 }
 
