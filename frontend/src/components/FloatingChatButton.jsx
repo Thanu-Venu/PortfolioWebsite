@@ -1,0 +1,67 @@
+import { useState } from "react";
+import Chatbot from "./Chatbot";
+
+function FloatingChatButton() {
+    const [open, setOpen] = useState(false);
+
+    return (
+        <>
+            {/* FLOATING BUTTON */}
+            <button
+                onClick={() => setOpen(!open)}
+                aria-label={open ? "Close chat" : "Open chat"}
+                className={`ui-interactive fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-2xl border transition duration-300 ${open
+                    ? "border-[color:var(--accent-gold)] bg-[color:var(--accent-gold)] text-[#141006] shadow-[0_16px_44px_rgba(198,169,107,0.4)]"
+                    : "border-white/10 bg-black/70 text-[#f3f3f3] shadow-[0_14px_34px_rgba(0,0,0,0.45)] hover:border-[color:var(--accent-gold-soft)]"
+                    }`}
+            >
+                {!open && (
+                    <span className="pointer-events-none absolute -right-0.5 -top-0.5 h-3.5 w-3.5">
+                        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#c6a96b]/60" />
+                        <span className="relative inline-flex h-3.5 w-3.5 rounded-full border border-[#1a1308] bg-[#d0b37a]" />
+                    </span>
+                )}
+                {open ? (
+                    <svg
+                        viewBox="0 0 24 24"
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="m18 6-12 12" />
+                        <path d="m6 6 12 12" />
+                    </svg>
+                ) : (
+                    <svg
+                        viewBox="0 0 24 24"
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M7 10h10" />
+                        <path d="M7 14h6" />
+                        <path d="M12 3c-4.97 0-9 3.66-9 8.17 0 2.53 1.27 4.78 3.27 6.29L5 21l4.57-1.55c.78.15 1.59.23 2.43.23 4.97 0 9-3.66 9-8.18C21 6.66 16.97 3 12 3Z" />
+                    </svg>
+                )}
+            </button>
+
+            {/* CHATBOX */}
+            {open && (
+                <div className="chat-pop fixed bottom-24 right-4 z-50 origin-bottom-right sm:right-6">
+                    <Chatbot />
+                </div>
+            )}
+        </>
+    );
+}
+
+export default FloatingChatButton;
+
