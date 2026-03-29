@@ -1,27 +1,28 @@
 function Home() {
     return (
-        <div className="h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+        <section id="Home" className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 pb-12 relative reveal">
+            <p className="text-[11px] md:text-xs uppercase tracking-[0.28em] text-gray-500 mb-5 reveal reveal-delay-1">Software Engineer Portfolio</p>
 
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-                Hi, I'm <span className="text-gray-300">Thanu</span>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.95] reveal reveal-delay-1">
+                Hi, I'm <span className="hero-sheen">Thanu</span>
             </h1>
 
-            <p className="mt-6 text-gray-400 max-w-xl text-lg">
+            <p className="mt-7 text-gray-300 max-w-2xl text-lg md:text-xl leading-relaxed reveal reveal-delay-2">
                 Software Engineer passionate about building scalable systems
                 and exploring AI-driven applications.
             </p>
 
-            <div className="mt-8 flex gap-4">
-                <button className="px-6 py-3 border border-white rounded-lg hover:bg-white hover:text-black transition duration-300">
+            <div className="mt-10 flex gap-4 flex-wrap justify-center reveal reveal-delay-2">
+                <button className="px-7 py-3.5 border border-white rounded-full bg-white text-black hover:bg-gray-200 shadow-[0_10px_30px_rgba(255,255,255,0.15)] ui-interactive">
                     View Projects
                 </button>
 
-                <button className="px-6 py-3 border border-gray-700 rounded-lg hover:bg-gray-800 transition duration-300">
+                <button className="px-7 py-3.5 border border-gray-600 rounded-full hover:border-white hover:bg-white/10 ui-interactive">
                     Download CV
                 </button>
             </div>
 
-        </div>
+        </section>
     );
 }
 
