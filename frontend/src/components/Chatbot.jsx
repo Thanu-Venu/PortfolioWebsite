@@ -1,6 +1,8 @@
 
 import { useState, useRef, useEffect } from "react";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+
 function Chatbot() {
     const [messages, setMessages] = useState([
         { text: "Hey! 👋 How can I help you today?", sender: "bot" }
@@ -9,6 +11,8 @@ function Chatbot() {
     const [loading, setLoading] = useState(false);
     const [lastSource, setLastSource] = useState("unknown");
     const [lastReason, setLastReason] = useState("");
+    const [metrics, setMetrics] = useState(null);
+    const [showMetrics, setShowMetrics] = useState(false);
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -18,6 +22,30 @@ function Chatbot() {
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+
+    useEffect(() => {
+        let timer;
+
+        const loadMetrics = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/metrics`);
+                if (!res.ok) return;
+                const data = await res.json();
+                setMetrics(data);
+            } catch {
+                // Metrics are optional; ignore fetch failures.
+            }
+        };
+
+        if (showMetrics) {
+            loadMetrics();
+            timer = setInterval(loadMetrics, 10000);
+        }
+
+        return () => {
+            if (timer) clearInterval(timer);
+        };
+    }, [showMetrics]);
 
     const handleSend = async () => {
         if (!input.trim() || loading) return;
@@ -30,7 +58,7 @@ function Chatbot() {
         setLoading(true);
 
         try {
-            const res = await fetch("http://127.0.0.1:8000/chat", {
+            const res = await fetch(`${API_BASE_URL}/chat`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -58,7 +86,7 @@ function Chatbot() {
 
         } catch (error) {
             console.error("Chat error:", error);
-            let errorMsg = "Server error 😢. Make sure backend is running on http://127.0.0.1:8000";
+            let errorMsg = `Server error 😢. Make sure backend is running on ${API_BASE_URL}`;
             if (error.message.includes("Failed to fetch")) {
                 errorMsg = "Connection failed. Is the backend running? 🔌";
             }
@@ -84,14 +112,28 @@ function Chatbot() {
                     </div>
                     <span
                         className={`text-[10px] uppercase tracking-[0.14em] px-2.5 py-1 rounded-full border ${lastSource === "gemini"
-                                ? "border-emerald-400/50 text-emerald-300 bg-emerald-500/10"
-                                : "border-amber-400/50 text-amber-300 bg-amber-500/10"
+                            ? "border-emerald-400/50 text-emerald-300 bg-emerald-500/10"
+                            : "border-amber-400/50 text-amber-300 bg-amber-500/10"
                             }`}
                         title={lastReason ? `Fallback reason: ${lastReason}` : ""}
                     >
                         {lastSource === "gemini" ? "Gemini" : "Fallback"}
                     </span>
                 </div>
+                <button
+                    onClick={() => setShowMetrics((prev) => !prev)}
+                    className="mt-3 text-[10px] uppercase tracking-[0.12em] text-gray-300 hover:text-white"
+                >
+                    {showMetrics ? "Hide Usage" : "Show Usage"}
+                </button>
+                {showMetrics && metrics && (
+                    <div className="mt-2 grid grid-cols-2 gap-2 text-[10px] text-gray-300">
+                        <div className="rounded-lg border border-white/15 px-2 py-1">Req: {metrics.total_requests}</div>
+                        <div className="rounded-lg border border-white/15 px-2 py-1">Gemini: {metrics.gemini_responses}</div>
+                        <div className="rounded-lg border border-white/15 px-2 py-1">Fallback: {metrics.fallback_responses}</div>
+                        <div className="rounded-lg border border-white/15 px-2 py-1">Cache: {metrics.cache_hits}</div>
+                    </div>
+                )}
             </div>
 
             {/* Messages */}
