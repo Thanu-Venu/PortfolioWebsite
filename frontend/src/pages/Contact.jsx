@@ -8,7 +8,7 @@ function Contact() {
                 Contact
             </h2>
 
-            <div className="h-1 w-20 bg-white rounded-full shadow-[0_0_18px_rgba(255,255,255,0.35)] mb-8"></div>
+            <div className="h-1 w-20 rounded-full accent-line mb-8"></div>
 
             <p className="text-gray-300 mb-10 max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm px-6 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
                 Feel free to reach out if you'd like to collaborate, discuss a project, or just connect.
