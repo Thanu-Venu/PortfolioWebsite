@@ -13,7 +13,7 @@ function Home() {
             </p>
 
             <div className="mt-10 flex gap-4 flex-wrap justify-center reveal reveal-delay-2">
-                <button className="px-7 py-3.5 border border-white rounded-full bg-white text-black hover:bg-gray-200 shadow-[0_10px_30px_rgba(255,255,255,0.15)] ui-interactive">
+                <button className="px-7 py-3.5 border rounded-full accent-cta ui-interactive">
                     View Projects
                 </button>
 
