@@ -13,13 +13,20 @@ function Home() {
             </p>
 
             <div className="mt-10 flex gap-4 flex-wrap justify-center reveal reveal-delay-2">
-                <button className="px-7 py-3.5 border rounded-full accent-cta ui-interactive">
+                <a
+                    href="#Projects"
+                    className="px-7 py-3.5 border rounded-full accent-cta ui-interactive"
+                >
                     View Projects
-                </button>
+                </a>
 
-                <button className="px-7 py-3.5 border border-gray-600 rounded-full hover:border-white hover:bg-white/10 ui-interactive">
+                <a
+                    href="/Thanu-CV.pdf"
+                    download="Thanu-CV.pdf"
+                    className="px-7 py-3.5 border border-gray-600 rounded-full hover:border-white hover:bg-white/10 ui-interactive"
+                >
                     Download CV
-                </button>
+                </a>
             </div>
 
         </section>
