@@ -4,10 +4,127 @@
 
 html {
   font-size: 17px;
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Satoshi", "General Sans", "Manrope", "Segoe UI", sans-serif;
+  background: #050505;
+  color: #f8f8f8;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ambient-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: translate3d(30px, -25px, 0) scale(1.08);
+    opacity: 0.35;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.2;
+  }
+}
+
+@keyframes text-sheen {
+  0% {
+    background-position: 130% 50%;
+  }
+
+  100% {
+    background-position: -40% 50%;
+  }
+}
+
+.reveal {
+  animation: reveal-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-delay-1 {
+  animation-delay: 120ms;
+}
+
+.reveal-delay-2 {
+  animation-delay: 240ms;
+}
+
+.ui-interactive {
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 260ms ease, box-shadow 260ms ease, background-color 260ms ease,
+    color 260ms ease;
+}
+
+.ui-interactive:hover {
+  transform: translateY(-2px);
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(42px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  animation: ambient-drift 9s ease-in-out infinite;
+}
+
+.ambient-orb-a {
+  width: 300px;
+  height: 300px;
+  left: 6%;
+  top: 12%;
+}
+
+.ambient-orb-b {
+  width: 340px;
+  height: 340px;
+  right: 4%;
+  bottom: 10%;
+  animation-duration: 12s;
+  animation-delay: 1.5s;
+}
+
+.hero-sheen {
+  color: transparent;
+  background-image: linear-gradient(115deg, #f8f8f8 12%, #ffffff 38%, #bfbfbf 50%, #ffffff 62%, #f8f8f8 88%);
+  background-size: 230% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-sheen 3.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal,
+  .reveal-delay-1,
+  .reveal-delay-2,
+  .ambient-orb,
+  .hero-sheen {
+    animation: none;
+  }
+
+  .ui-interactive,
+  .ui-interactive:hover {
+    transition: none;
+    transform: none;
+  }
 }
 
 ::-webkit-scrollbar {
