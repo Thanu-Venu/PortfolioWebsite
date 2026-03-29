@@ -120,11 +120,13 @@ body {
 
 .hero-sheen {
   color: transparent;
-  background-image: linear-gradient(115deg, #f8f8f8 12%, #ffffff 38%, #bfbfbf 50%, #ffffff 62%, #f8f8f8 88%);
-  background-size: 230% 100%;
+  background-image: linear-gradient(115deg, #f2f2f2 10%, #ffffff 36%, #d6d6d6 50%, #ffffff 64%, #f2f2f2 90%);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: text-sheen 3.6s linear infinite;
+  -webkit-text-stroke: 0.55px rgba(255, 255, 255, 0.24);
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
+  animation: text-sheen 4.8s linear infinite;
 }
 
 .accent-text {

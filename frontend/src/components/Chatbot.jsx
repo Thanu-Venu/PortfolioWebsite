@@ -106,9 +106,9 @@ function Chatbot() {
     };
 
     return (
-        <div className="flex flex-col h-[70vh] max-h-[500px] w-[calc(100vw-2rem)] max-w-sm sm:w-96 bg-black/80 backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+        <div className="flex flex-col h-[70vh] max-h-[500px] w-[calc(100vw-2rem)] max-w-sm sm:w-96 bg-black/95 sm:bg-black/80 backdrop-blur-none sm:backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
             {/* Header */}
-            <div className="border-b border-white/20 p-5 rounded-t-2xl bg-gradient-to-r from-white/10 to-white/5">
+            <div className="border-b border-white/20 p-5 rounded-t-2xl bg-black/90 sm:bg-gradient-to-r sm:from-white/10 sm:to-white/5">
                 <div className="flex items-center justify-between gap-3">
                     <div>
                         <h3 className="text-lg font-semibold accent-text tracking-wide">Chat Assistant</h3>
@@ -149,10 +149,10 @@ function Chatbot() {
                     >
                         <div
                             className={`max-w-xs px-4 py-3 rounded-2xl text-sm leading-relaxed ${msg.sender === "user"
-                                ? "bg-gradient-to-r from-[var(--accent-gold)] to-[#d4b97e] text-black font-medium rounded-br-none shadow-[0_8px_24px_rgba(198,169,107,0.2)]"
+                                ? "bg-[#8f6f32] text-[#fffdf5] sm:bg-gradient-to-r sm:from-[var(--accent-gold)] sm:to-[#d4b97e] sm:text-black font-medium rounded-br-none shadow-[0_8px_24px_rgba(198,169,107,0.2)]"
                                 : msg.isError
                                     ? "bg-red-600/40 border border-red-500/50 text-red-100 rounded-bl-none"
-                                    : "bg-white/20 border border-white/30 text-gray-50 rounded-bl-none"
+                                    : "bg-white/25 sm:bg-white/20 border border-white/30 text-gray-50 rounded-bl-none"
                                 }`}
                         >
                             {msg.text}
@@ -166,7 +166,7 @@ function Chatbot() {
                 ))}
                 {loading && (
                     <div className="flex justify-start">
-                        <div className="bg-white/20 border border-white/30 px-4 py-3 rounded-2xl rounded-bl-none">
+                        <div className="bg-white/25 sm:bg-white/20 border border-white/30 px-4 py-3 rounded-2xl rounded-bl-none">
                             <div className="flex gap-1.5">
                                 <div className="h-2 w-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "0s" }}></div>
                                 <div className="h-2 w-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
@@ -179,7 +179,7 @@ function Chatbot() {
             </div>
 
             {/* Input */}
-            <div className="border-t border-white/20 p-4 bg-gradient-to-t from-white/5 to-transparent rounded-b-2xl">
+            <div className="border-t border-white/20 p-4 bg-black/85 sm:bg-gradient-to-t sm:from-white/5 sm:to-transparent rounded-b-2xl">
                 <div className="flex gap-3">
                     <input
                         type="text"
@@ -188,7 +188,7 @@ function Chatbot() {
                         onKeyPress={(e) => e.key === "Enter" && !loading && handleSend()}
                         placeholder="Type your message..."
                         disabled={loading}
-                        className="flex-1 bg-white/15 border border-white/30 rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-300 focus:outline-none focus:border-[var(--accent-gold)]/60 focus:bg-white/20 transition-all disabled:opacity-50"
+                        className="flex-1 bg-white/20 sm:bg-white/15 border border-white/30 rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-300 focus:outline-none focus:border-[var(--accent-gold)]/60 focus:bg-white/25 sm:focus:bg-white/20 transition-all disabled:opacity-50"
                     />
                     <button
                         onClick={handleSend}
