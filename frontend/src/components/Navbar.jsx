@@ -2,7 +2,7 @@ function Navbar() {
     return (
         <nav className="fixed top-0 left-0 w-full h-16 bg-black/60 backdrop-blur-xl border-b border-white/10 flex items-center justify-between px-6 md:px-8 z-50 shadow-[0_10px_30px_rgba(0,0,0,0.45)] reveal">
 
-            <h1 className="text-lg md:text-xl font-semibold tracking-[0.2em] uppercase text-gray-100">
+            <h1 className="text-lg md:text-xl font-semibold tracking-[0.2em] uppercase accent-text">
                 Thanu
             </h1>
 
