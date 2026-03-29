@@ -4,16 +4,18 @@ import { VscCode } from "react-icons/vsc";
 
 function TechStack() {
     return (
-        <div className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80">
+        <section id="TechStack" className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80 reveal">
 
             <h2 className="text-3xl md:text-5xl font-bold mb-12 tracking-tight">
                 Tech Stack
             </h2>
 
+            <div className="h-1 w-20 bg-white rounded-full shadow-[0_0_18px_rgba(255,255,255,0.35)] mb-10"></div>
+
             <div className="grid md:grid-cols-2 gap-8">
 
                 {/* ===== Programming ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive">
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Programming</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -29,7 +31,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Frontend ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive">
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Frontend</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -45,7 +47,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Backend ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive">
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Backend</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -60,7 +62,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Databases ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive">
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Databases</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -73,7 +75,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== DevOps ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:col-span-2">
+                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:col-span-2 ui-interactive">
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">DevOps & Tools</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -92,14 +94,14 @@ function TechStack() {
 
             </div>
 
-        </div>
+        </section>
     );
 }
 
 function Card({ tech }) {
     return (
         <div className="flex flex-col items-center">
-            <div className="w-16 h-16 flex items-center justify-center bg-gray-950 rounded-xl border border-gray-700 hover:scale-105 hover:border-white transition duration-300 hover:shadow-[0_0_18px_rgba(255,255,255,0.25)] text-2xl">
+            <div className="w-16 h-16 flex items-center justify-center bg-gray-950 rounded-xl border border-gray-700 hover:scale-105 hover:border-white hover:shadow-[0_0_18px_rgba(255,255,255,0.25)] text-2xl ui-interactive">
                 {tech.icon}
             </div>
             <p className="text-xs text-gray-300 mt-2 tracking-wide">{tech.name}</p>
