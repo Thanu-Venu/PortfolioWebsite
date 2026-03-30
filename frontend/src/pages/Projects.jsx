@@ -1,5 +1,6 @@
 import { FaGithub } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 const featuredProjects = [
     {
@@ -8,6 +9,32 @@ const featuredProjects = [
             "A scalable middleware system designed to integrate multiple logistics platforms such as CMS, ROS, and WMS using an event-driven microservices architecture. It focuses on asynchronous communication, reliability, and efficient system coordination.",
         stack: "FastAPI • RabbitMQ • Docker • React",
         href: "https://github.com/Thanu-Venu/SwiftLogistics_Middleware",
+        details: [
+            "Designed event-driven communication between multiple warehouse systems.",
+            "Implemented queue-based workflows to reduce request bottlenecks.",
+            "Containerized services with Docker for consistent deployment environments.",
+        ],
+        caseStudy: {
+            overview:
+                "This project was built to unify disconnected warehouse and order-management platforms under one reliable integration layer. The objective was to reduce manual syncing and improve data consistency across logistics operations.",
+            challenge:
+                "Each upstream system exposed different payload contracts and response patterns, which created brittle point-to-point integrations and frequent synchronization delays.",
+            approach: [
+                "Designed a message normalization layer so each service consumed a consistent internal schema.",
+                "Introduced asynchronous processing queues to absorb traffic spikes and prevent downstream overload.",
+                "Implemented retry and dead-letter strategies for failed deliveries to improve operational resilience.",
+            ],
+            architecture: [
+                "FastAPI services for adapter endpoints and orchestration routes.",
+                "RabbitMQ exchange routing for decoupled producer/consumer workflows.",
+                "Dockerized service boundaries for repeatable local and staging deployments.",
+            ],
+            outcomes: [
+                "Improved reliability of inter-system communication during high-volume windows.",
+                "Reduced coupling between source systems and business logic services.",
+                "Created a foundation for scaling integrations by adding adapters instead of rewriting the core.",
+            ],
+        },
     },
     {
         title: "Caretaker Management System",
@@ -15,6 +42,32 @@ const featuredProjects = [
             "A full-stack web application designed to connect clients with caretakers for services such as elder care, babysitting, and household support. The system includes role-based authentication, service booking, and management features.",
         stack: "PHP • MySQL • JavaScript",
         href: "https://github.com/Thanu-Venu/caretaker-management-system",
+        details: [
+            "Built role-based flows for clients, caretakers, and administrators.",
+            "Added booking and availability logic for service scheduling.",
+            "Structured relational database models for users, services, and requests.",
+        ],
+        caseStudy: {
+            overview:
+                "The platform was designed as a full service workflow from user onboarding to booking fulfillment, focusing on trust, discoverability, and scheduling clarity for both clients and caretakers.",
+            challenge:
+                "The primary challenge was balancing different user journeys while keeping the booking process straightforward and reducing scheduling conflicts.",
+            approach: [
+                "Mapped role-specific dashboards so each user group saw only relevant actions and data.",
+                "Built service filtering and booking forms with validation to improve request quality.",
+                "Introduced appointment-state transitions to track pending, accepted, and completed bookings.",
+            ],
+            architecture: [
+                "PHP-based backend handling authentication and business rules.",
+                "MySQL schema with relational links across users, services, and appointments.",
+                "JavaScript-enhanced frontend interactions for smoother form and state feedback.",
+            ],
+            outcomes: [
+                "Delivered a complete end-to-end booking cycle from discovery to confirmation.",
+                "Made platform operations easier with clear role boundaries and status tracking.",
+                "Provided a modular baseline that can be extended with payments and notifications.",
+            ],
+        },
     },
     {
         title: "Mini Compiler (C)",
@@ -22,6 +75,32 @@ const featuredProjects = [
             "A mini compiler implemented in C that performs lexical analysis, parsing, and semantic validation. It demonstrates core compiler design concepts including recursive descent parsing and structured error handling.",
         stack: "C • Compiler Design",
         href: "https://github.com/Thanu-Venu/mini-compiler-c",
+        details: [
+            "Implemented tokenization and grammar parsing using recursive descent techniques.",
+            "Added semantic checks for variable usage and expression validity.",
+            "Built error reporting flow to surface line-level parse issues.",
+        ],
+        caseStudy: {
+            overview:
+                "This compiler project focused on implementing the core phases of language processing in a structured and testable way, from lexical analysis through semantic validation.",
+            challenge:
+                "Keeping parser behavior predictable while preserving readable grammar logic and meaningful error messages required careful control over token flow and recovery rules.",
+            approach: [
+                "Defined token categories and lexical rules before implementing parser functions.",
+                "Implemented recursive descent parsing aligned to grammar productions for maintainability.",
+                "Added semantic validation passes for undeclared symbols and invalid expression types.",
+            ],
+            architecture: [
+                "C modules separated by lexer, parser, symbol table, and semantic analyzer.",
+                "Token stream interface shared between parser and semantic checks.",
+                "Centralized error handling to report context with line-level precision.",
+            ],
+            outcomes: [
+                "Demonstrated a complete educational compiler pipeline with clear phase boundaries.",
+                "Improved debuggability through structured error output.",
+                "Created a strong base for extending into intermediate code generation.",
+            ],
+        },
     },
     {
         title: "Pub/Sub Middleware",
@@ -29,6 +108,32 @@ const featuredProjects = [
             "A CLI-based publish-subscribe messaging system built using socket programming. It supports multiple clients with topic-based message routing and demonstrates real-time communication between distributed components.",
         stack: "Python • Socket Programming",
         href: "https://github.com/Thanu-Venu/pub_sub_assignment1",
+        details: [
+            "Created topic-based routing for publishers and subscribers.",
+            "Managed concurrent client sessions with robust socket handling.",
+            "Enabled near real-time delivery between distributed clients.",
+        ],
+        caseStudy: {
+            overview:
+                "The middleware explored real-time message distribution in a lightweight CLI environment, emphasizing reliable topic routing across concurrently connected clients.",
+            challenge:
+                "Handling client concurrency and preserving message delivery order across topics was difficult without introducing tight coupling between publishers and subscribers.",
+            approach: [
+                "Introduced topic registries to dynamically track active subscribers per channel.",
+                "Implemented non-blocking socket interaction patterns for multi-client responsiveness.",
+                "Separated connection handling from routing logic to simplify maintenance.",
+            ],
+            architecture: [
+                "Python socket server managing client sessions and topic subscriptions.",
+                "Routing module responsible for publish dispatch and subscriber fan-out.",
+                "CLI clients for publisher/subscriber workflows with command parsing.",
+            ],
+            outcomes: [
+                "Achieved consistent topic-based communication between distributed clients.",
+                "Demonstrated core pub/sub patterns useful for larger event-driven systems.",
+                "Provided a practical sandbox for networking, concurrency, and protocol design.",
+            ],
+        },
     },
     {
         title: "LUDO LIKE UCSC",
@@ -36,6 +141,32 @@ const featuredProjects = [
             "A console-based simulation of the classic Ludo board game implemented in C. It handles turn-based gameplay, dice rolling, piece movement, capturing logic, safe zones, and win conditions with dynamic mystery cell features.",
         stack: "C",
         href: "https://github.com/Thanu-Venu/LUDO-LIKE-UCSC",
+        details: [
+            "Modeled complete game rules including safe zones and capture mechanics.",
+            "Built turn-based state management for multiple players and pieces.",
+            "Added mystery-cell behavior to make gameplay outcomes dynamic.",
+        ],
+        caseStudy: {
+            overview:
+                "This project recreated a Ludo-style game loop in C with an emphasis on deterministic rule handling, board-state transitions, and replayable gameplay logic.",
+            challenge:
+                "The core challenge was implementing many interconnected game rules while keeping turn resolution predictable and avoiding state corruption after each move.",
+            approach: [
+                "Modeled board cells and piece positions as explicit state structures.",
+                "Defined turn resolution rules for movement, captures, safe zones, and victory checks.",
+                "Added mystery-cell events to introduce controlled unpredictability without breaking core rules.",
+            ],
+            architecture: [
+                "C-based game engine with turn controller and board-state evaluators.",
+                "Rule-check modules for captures, protection zones, and win conditions.",
+                "CLI rendering loop for move prompts and game progress output.",
+            ],
+            outcomes: [
+                "Delivered a complete playable simulation with robust turn handling.",
+                "Improved confidence in complex state-machine implementation in C.",
+                "Created an extensible codebase for adding AI players or richer UI later.",
+            ],
+        },
     },
 ];
 
@@ -80,6 +211,9 @@ const miniProjects = [
 
 function Projects() {
     const [index, setIndex] = useState(0);
+    const [expandedProjects, setExpandedProjects] = useState([]);
+    const [allowMultipleExpanded, setAllowMultipleExpanded] = useState(false);
+    const [activeCaseStudy, setActiveCaseStudy] = useState(null);
 
     const getVisibleCards = () => {
         if (window.innerWidth >= 1024) return 4;
@@ -100,103 +234,357 @@ function Projects() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    useEffect(() => {
+        if (!allowMultipleExpanded && expandedProjects.length > 1) {
+            setExpandedProjects((prev) => [prev[0]]);
+        }
+    }, [allowMultipleExpanded, expandedProjects]);
+
+    useEffect(() => {
+        const handleEsc = (event) => {
+            if (event.key === "Escape") {
+                setActiveCaseStudy(null);
+            }
+        };
+
+        window.addEventListener("keydown", handleEsc);
+        return () => window.removeEventListener("keydown", handleEsc);
+    }, []);
+
+    useEffect(() => {
+        if (!activeCaseStudy) return undefined;
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+        };
+    }, [activeCaseStudy]);
+
     const scrollLeft = () => setIndex((prev) => Math.max(Math.min(prev, maxIndex) - 1, 0));
     const scrollRight = () => setIndex((prev) => Math.min(Math.min(prev, maxIndex) + 1, maxIndex));
+    const toggleExpandedProject = (title) => {
+        setExpandedProjects((prev) => {
+            const isOpen = prev.includes(title);
+            if (allowMultipleExpanded) {
+                return isOpen ? prev.filter((item) => item !== title) : [...prev, title];
+            }
+            return isOpen ? [] : [title];
+        });
+    };
 
-    return (
-        <section id="Projects" className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-700/40 backdrop-blur-sm reveal">
-            <div className="mb-12">
-                <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Projects</h2>
-                <div className="h-1 w-20 rounded-full accent-line"></div>
-            </div>
+    const caseStudyModal = activeCaseStudy && typeof document !== "undefined"
+        ? createPortal(
+            <div
+                className="case-study-overlay fixed inset-0 z-[95] flex items-center justify-center bg-black/72 p-3 md:p-6 backdrop-blur-sm"
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${activeCaseStudy.title} case study`}
+                onClick={() => setActiveCaseStudy(null)}
+            >
+                <div
+                    className="case-study-panel w-full max-w-3xl rounded-2xl border border-white/20 bg-[#0a0a0a] shadow-[0_24px_80px_rgba(0,0,0,0.62)] max-h-[90vh] overflow-hidden"
+                    onClick={(event) => event.stopPropagation()}
+                >
+                    <div className="flex items-start justify-between gap-3 border-b border-white/10 px-5 py-4 md:px-6 md:py-5">
+                        <div>
+                            <p className="text-[10px] uppercase tracking-[0.14em] text-[color:var(--accent-gold)] mb-1">Case Study</p>
+                            <h4 className="text-xl md:text-2xl font-semibold text-white leading-tight">{activeCaseStudy.title}</h4>
+                        </div>
+                        <button
+                            type="button"
+                            onClick={() => setActiveCaseStudy(null)}
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-gray-300 hover:text-white hover:border-white ui-interactive"
+                            aria-label="Close case study"
+                        >
+                            ×
+                        </button>
+                    </div>
 
-            <h3 className="text-2xl font-bold mb-8 text-gray-100">Featured Projects</h3>
+                    <div className="case-study-scroll overflow-y-auto max-h-[64vh] px-5 py-4 md:px-6 md:py-5 overscroll-contain">
+                        <p className="mb-4 text-sm text-gray-300 leading-relaxed">{activeCaseStudy.caseStudy.overview}</p>
+                        <p className="mb-5 text-xs font-medium tracking-[0.08em] uppercase text-gray-400">{activeCaseStudy.stack}</p>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-20">
-                {featuredProjects.map((project) => (
-                    <div
-                        key={project.title}
-                        className="group border border-gray-700/50 p-6 rounded-xl hover:border-gray-300/60 bg-gradient-to-br from-gray-900/50 to-gray-800/30 hover:from-gray-800/70 hover:to-gray-700/50 hover:shadow-glow backdrop-blur-sm ui-interactive"
-                    >
-                        <h4 className="text-xl font-semibold mb-3 text-gray-100 group-hover:text-white transition">
-                            {project.title}
-                        </h4>
+                        <div className="space-y-5 text-sm text-gray-200">
+                            <div className="case-section">
+                                <p className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-[color:var(--accent-gold)]">
+                                    <svg
+                                        viewBox="0 0 20 20"
+                                        className="h-3.5 w-3.5"
+                                        aria-hidden="true"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.7"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <circle cx="10" cy="10" r="7" />
+                                        <path d="M10 6.5v4.3" />
+                                        <circle cx="10" cy="13.8" r="0.7" fill="currentColor" stroke="none" />
+                                    </svg>
+                                    Challenge
+                                </p>
+                                <p className="leading-relaxed text-gray-300">{activeCaseStudy.caseStudy.challenge}</p>
+                            </div>
 
-                        <p className="text-gray-300 mb-4 leading-relaxed text-sm">{project.description}</p>
+                            <div className="case-section">
+                                <p className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-[color:var(--accent-gold)]">
+                                    <svg
+                                        viewBox="0 0 20 20"
+                                        className="h-3.5 w-3.5"
+                                        aria-hidden="true"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.7"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path d="M4 10h12" />
+                                        <path d="m10 4 6 6-6 6" />
+                                    </svg>
+                                    Implementation Approach
+                                </p>
+                                <ul className="space-y-2 border-l border-white/20 pl-3 text-gray-200">
+                                    {activeCaseStudy.caseStudy.approach.map((item) => (
+                                        <li key={item} className="leading-relaxed">{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
 
-                        <p className="text-xs text-gray-300 mb-4 font-medium">{project.stack}</p>
+                            <div className="case-section">
+                                <p className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-[color:var(--accent-gold)]">
+                                    <svg
+                                        viewBox="0 0 20 20"
+                                        className="h-3.5 w-3.5"
+                                        aria-hidden="true"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.7"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <rect x="4" y="4" width="12" height="12" rx="1.8" />
+                                        <path d="M10 4v12" />
+                                        <path d="M4 10h12" />
+                                    </svg>
+                                    Architecture Highlights
+                                </p>
+                                <ul className="space-y-2 border-l border-white/20 pl-3 text-gray-200">
+                                    {activeCaseStudy.caseStudy.architecture.map((item) => (
+                                        <li key={item} className="leading-relaxed">{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
 
+                            <div className="case-section">
+                                <p className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-[color:var(--accent-gold)]">
+                                    <svg
+                                        viewBox="0 0 20 20"
+                                        className="h-3.5 w-3.5"
+                                        aria-hidden="true"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="1.7"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path d="M4 10h12" />
+                                        <path d="M10 4v12" />
+                                        <path d="m5 12 3 3 7-7" />
+                                    </svg>
+                                    Outcomes
+                                </p>
+                                <ul className="space-y-2 border-l border-white/20 pl-3 text-gray-200">
+                                    {activeCaseStudy.caseStudy.outcomes.map((item) => (
+                                        <li key={item} className="leading-relaxed">{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex items-center justify-end gap-3 border-t border-white/10 px-5 py-4 md:px-6 md:py-5">
+                        <button
+                            type="button"
+                            onClick={() => setActiveCaseStudy(null)}
+                            className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.12em] text-gray-300 hover:text-white hover:border-white ui-interactive"
+                        >
+                            Close
+                        </button>
                         <a
-                            href={project.href}
+                            href={activeCaseStudy.href}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 text-white group-hover:border-white hover:bg-white hover:text-black hover:shadow-glow ui-interactive"
+                            className="rounded-full border border-[color:var(--accent-gold)] bg-[color:var(--accent-gold)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-black hover:bg-[#d4b97e] ui-interactive"
                         >
-                            <FaGithub size={18} />
+                            Open Repository
                         </a>
                     </div>
-                ))}
-            </div>
+                </div>
+            </div>,
+            document.body
+        )
+        : null;
 
-            <h3 className="text-2xl font-bold mb-8 text-gray-100">Mini Projects</h3>
+    return (
+        <>
+            <section id="Projects" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-gray-700/40 backdrop-blur-sm">
+                <div className="mb-12 stagger-item" style={{ "--reveal-delay": "60ms" }}>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Projects</h2>
+                    <div className="h-1 w-20 rounded-full accent-line"></div>
+                </div>
 
-            <div className="relative mx-auto mb-20 w-full max-w-[320px] px-2 sm:max-w-none sm:px-14">
-                <button
-                    onClick={scrollLeft}
-                    disabled={clampedIndex === 0}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
-                >
-                    ←
-                </button>
-
-                <div
-                    className="overflow-hidden mx-auto"
-                    style={{ width: `${visibleCards * miniCardWidth + (visibleCards - 1) * cardGap}px` }}
-                >
-                    <div
-                        className="flex gap-4 transition-transform duration-500"
-                        style={{ transform: `translateX(-${clampedIndex * cardStep}px)` }}
+                <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between stagger-item" style={{ "--reveal-delay": "120ms" }}>
+                    <h3 className="text-2xl font-bold text-gray-100">Featured Projects</h3>
+                    <button
+                        type="button"
+                        onClick={() => setAllowMultipleExpanded((prev) => !prev)}
+                        className="w-fit rounded-full border border-white/20 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.12em] text-gray-300 hover:border-white/40 hover:text-white ui-interactive"
+                        aria-pressed={allowMultipleExpanded}
                     >
-                        {miniProjects.map((project) => (
+                        {allowMultipleExpanded ? "Mode: Multiple Open" : "Mode: Single Open"}
+                    </button>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8 mb-20">
+                    {featuredProjects.map((project, i) => {
+                        const isExpanded = expandedProjects.includes(project.title);
+                        return (
                             <div
                                 key={project.title}
-                                className="w-[232px] shrink-0 border border-gray-700/50 p-4 rounded-xl hover:scale-105 bg-gradient-to-br from-gray-900/50 to-gray-800/30 hover:shadow-glow hover:border-white/60 group backdrop-blur-sm ui-interactive"
+                                className="group stagger-item border border-gray-700/50 p-6 rounded-xl hover:border-gray-300/60 bg-gradient-to-br from-gray-900/50 to-gray-800/30 hover:from-gray-800/70 hover:to-gray-700/50 hover:shadow-glow backdrop-blur-sm ui-interactive"
+                                style={{ "--reveal-delay": `${180 + i * 70}ms` }}
                             >
-                                <div className="overflow-hidden rounded-lg mb-3 relative h-30">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-                                    />
-                                </div>
-                                <h4 className="text-sm font-semibold text-gray-100 group-hover:text-white transition">
+                                <h4 className="text-xl font-semibold mb-3 text-gray-100 group-hover:text-white transition">
                                     {project.title}
                                 </h4>
-                                <p className="text-gray-500 text-xs mt-1">{project.subtitle}</p>
-                                <div className="flex justify-end mt-2">
+
+                                <p className="text-gray-300 mb-4 leading-relaxed text-sm">{project.description}</p>
+
+                                <p className="text-xs text-gray-300 mb-4 font-medium">{project.stack}</p>
+
+                                <div
+                                    id={`project-details-${i}`}
+                                    className="overflow-hidden transition-all duration-300"
+                                    style={{ maxHeight: isExpanded ? "260px" : "0px", opacity: isExpanded ? 1 : 0 }}
+                                >
+                                    <ul className="mb-4 space-y-2 text-sm text-gray-300/95 border-l border-white/20 pl-3">
+                                        {project.details.map((detail) => (
+                                            <li key={detail} className="leading-relaxed">{detail}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div className="mb-4">
+                                    <button
+                                        type="button"
+                                        onClick={() => toggleExpandedProject(project.title)}
+                                        className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] border border-white/30 rounded-full px-3 py-1.5 text-gray-200 hover:text-white hover:border-white ui-interactive"
+                                        aria-expanded={isExpanded}
+                                        aria-controls={`project-details-${i}`}
+                                    >
+                                        {isExpanded ? "Hide Details" : "More Details"}
+                                        <svg
+                                            viewBox="0 0 20 20"
+                                            aria-hidden="true"
+                                            className={`h-3.5 w-3.5 transition-transform duration-300 ${isExpanded ? "rotate-180" : "rotate-0"}`}
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="1.8"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <path d="m5 8 5 5 5-5" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div className="flex items-center gap-3">
+                                    <button
+                                        type="button"
+                                        onClick={() => setActiveCaseStudy(project)}
+                                        className="inline-flex items-center rounded-full border border-[color:var(--accent-gold-soft)] px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-[color:var(--accent-gold)] hover:border-[color:var(--accent-gold)] hover:bg-[color:var(--accent-gold-soft)]/20 ui-interactive"
+                                    >
+                                        View Case Study
+                                    </button>
+
                                     <a
                                         href={project.href}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-gray-600 text-white hover:border-white hover:bg-white hover:text-black ui-interactive"
+                                        className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 text-white group-hover:border-white hover:bg-white hover:text-black hover:shadow-glow ui-interactive"
                                     >
-                                        <FaGithub size={14} />
+                                        <FaGithub size={18} />
                                     </a>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
 
-                <button
-                    onClick={scrollRight}
-                    disabled={clampedIndex === maxIndex}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
-                >
-                    →
-                </button>
-            </div>
-        </section>
+                <h3 className="text-2xl font-bold mb-8 text-gray-100 stagger-item" style={{ "--reveal-delay": "320ms" }}>Mini Projects</h3>
+
+                <div className="relative mx-auto mb-20 w-full max-w-[320px] px-2 sm:max-w-none sm:px-14 stagger-item" style={{ "--reveal-delay": "380ms" }}>
+                    <button
+                        onClick={scrollLeft}
+                        disabled={clampedIndex === 0}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
+                    >
+                        ←
+                    </button>
+
+                    <div
+                        className="overflow-hidden mx-auto"
+                        style={{ width: `${visibleCards * miniCardWidth + (visibleCards - 1) * cardGap}px` }}
+                    >
+                        <div
+                            className="flex gap-4 transition-transform duration-500"
+                            style={{ transform: `translateX(-${clampedIndex * cardStep}px)` }}
+                        >
+                            {miniProjects.map((project) => (
+                                <div
+                                    key={project.title}
+                                    className="w-[232px] shrink-0 border border-gray-700/50 p-4 rounded-xl hover:scale-105 bg-gradient-to-br from-gray-900/50 to-gray-800/30 hover:shadow-glow hover:border-white/60 group backdrop-blur-sm ui-interactive"
+                                >
+                                    <div className="overflow-hidden rounded-lg mb-3 relative h-30">
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+                                        />
+                                    </div>
+                                    <h4 className="text-sm font-semibold text-gray-100 group-hover:text-white transition">
+                                        {project.title}
+                                    </h4>
+                                    <p className="text-gray-500 text-xs mt-1">{project.subtitle}</p>
+                                    <div className="flex justify-end mt-2">
+                                        <a
+                                            href={project.href}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-gray-600 text-white hover:border-white hover:bg-white hover:text-black ui-interactive"
+                                        >
+                                            <FaGithub size={14} />
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <button
+                        onClick={scrollRight}
+                        disabled={clampedIndex === maxIndex}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
+                    >
+                        →
+                    </button>
+                </div>
+
+            </section>
+            {caseStudyModal}
+        </>
     );
 }
 
