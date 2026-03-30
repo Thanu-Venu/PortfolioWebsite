@@ -1,15 +1,15 @@
 function Education() {
     return (
-        <section id="Education" className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80 reveal">
+        <section id="Education" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80">
 
-            <h2 className="text-3xl md:text-5xl font-bold mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold mb-12 stagger-item" style={{ "--reveal-delay": "60ms" }}>
                 Education & Certifications
             </h2>
 
-            <div className="h-1 w-20 rounded-full accent-line mb-10"></div>
+            <div className="h-1 w-20 rounded-full accent-line mb-10 stagger-item" style={{ "--reveal-delay": "120ms" }}></div>
 
             {/* EDUCATION */}
-            <div className="mb-16">
+            <div className="mb-16 stagger-item" style={{ "--reveal-delay": "180ms" }}>
                 <h3 className="text-xl font-semibold mb-4">Education</h3>
 
                 <div className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-6 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
@@ -24,7 +24,7 @@ function Education() {
             </div>
 
             {/* CERTIFICATIONS */}
-            <div>
+            <div className="stagger-item" style={{ "--reveal-delay": "250ms" }}>
                 <h3 className="text-xl font-semibold mb-6">Certifications</h3>
 
                 <div className="grid md:grid-cols-2 gap-6">
