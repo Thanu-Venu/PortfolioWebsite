@@ -1,22 +1,22 @@
 
 function About() {
     return (
-        <section id="About" className="px-6 md:px-20 py-20 border-t border-gray-800/80 flex flex-col md:flex-row md:items-center gap-10 md:gap-14 reveal">
+        <section id="About" className="js-reveal section-reveal px-6 md:px-20 py-20 border-t border-gray-800/80 flex flex-col md:flex-row md:items-center gap-10 md:gap-14">
             {/* LEFT SIDE */}
             <div className="flex-1">
 
-                <h2 className="text-3xl md:text-5xl font-bold mb-6 reveal reveal-delay-1">
+                <h2 className="text-3xl md:text-5xl font-bold mb-6 stagger-item" style={{ "--reveal-delay": "80ms" }}>
                     About Me
                 </h2>
 
-                <p className="text-gray-300 text-lg leading-relaxed max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive reveal reveal-delay-1">
+                <p className="stagger-item text-gray-300 text-lg leading-relaxed max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive" style={{ "--reveal-delay": "160ms" }}>
                     I am a passionate Software Engineer with a strong interest in building
                     scalable applications and exploring AI-driven solutions. I enjoy working
                     on both frontend and backend technologies, creating seamless and efficient
                     user experiences.
                 </p>
 
-                <p className="text-gray-300 text-lg leading-relaxed mt-6 max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive reveal reveal-delay-2">
+                <p className="stagger-item text-gray-300 text-lg leading-relaxed mt-6 max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive" style={{ "--reveal-delay": "250ms" }}>
                     Currently, I am focusing on improving my skills in full-stack development
                     and learning more about machine learning and system design. I love solving
                     real-world problems through code and continuously pushing myself to learn
@@ -26,11 +26,11 @@ function About() {
             </div>
 
             <div className="flex-1 flex justify-center md:justify-end md:pr-2 lg:pr-6">
-                <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 flex items-center justify-center reveal reveal-delay-2">
+                <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 flex items-center justify-center stagger-item" style={{ "--reveal-delay": "220ms" }}>
                     <ProfileAura />
-                    <div className="absolute inset-0 rounded-full bg-white/10 blur-2xl"></div>
+                    <div className="absolute inset-0 rounded-full bg-white/10 blur-2xl orbit-float orbit-float-delayed"></div>
 
-                    <div className="relative z-10 p-[3px] rounded-full bg-black border border-white/60 shadow-[0_0_30px_rgba(255,255,255,0.35)]">
+                    <div className="relative z-10 p-[3px] rounded-full bg-black border border-white/60 shadow-[0_0_30px_rgba(255,255,255,0.35)] orbit-float">
                         <img
                             src="/profile.jpg"
                             alt="Profile"
@@ -63,7 +63,7 @@ function ProfileAura() {
     return (
         <svg
             viewBox="0 0 320 320"
-            className="absolute -inset-10 md:-inset-12 lg:-inset-14 pointer-events-none opacity-90"
+            className="absolute -inset-10 md:-inset-12 lg:-inset-14 pointer-events-none opacity-90 orbit-float"
             aria-hidden="true"
         >
             <g transform="translate(160 160)">
