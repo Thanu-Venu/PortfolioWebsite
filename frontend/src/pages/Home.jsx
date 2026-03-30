@@ -4,7 +4,7 @@ function Home() {
             <p className="text-[11px] md:text-xs uppercase tracking-[0.28em] text-gray-500 mb-5 reveal reveal-delay-1">Software Engineer Portfolio</p>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.95] reveal reveal-delay-1">
-                Hi, I'm <span className="hero-sheen">Thanu</span>
+                Hi, I'm <span className="hero-name-wrap"><span className="hero-sheen hero-name">Thanu</span></span>
             </h1>
 
             <p className="mt-7 text-gray-300 max-w-2xl text-lg md:text-xl leading-relaxed reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "180ms" }}>
