@@ -6,7 +6,7 @@ function Navbar() {
                 Thanu
             </h1>
 
-            <div className="space-x-2 md:space-x-3 text-xs md:text-sm bg-white/[0.03] border border-white/10 rounded-full px-2 py-1">
+            <div className="space-x-2 md:space-x-3 text-xs md:text-sm bg-white/[0.03] border border-white/10 rounded-full px-2 py-1 premium-card">
                 <a href="#About" className="inline-block px-3 py-1.5 rounded-full text-gray-300 hover:text-white hover:bg-white/10 ui-interactive">About</a>
                 <a href="#Projects" className="inline-block px-3 py-1.5 rounded-full text-gray-300 hover:text-white hover:bg-white/10 ui-interactive">Projects</a>
                 <a href="#Contact" className="inline-block px-3 py-1.5 rounded-full text-gray-300 hover:text-white hover:bg-white/10 ui-interactive">Contact</a>
