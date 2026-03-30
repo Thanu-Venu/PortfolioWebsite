@@ -235,12 +235,6 @@ function Projects() {
     }, []);
 
     useEffect(() => {
-        if (!allowMultipleExpanded && expandedProjects.length > 1) {
-            setExpandedProjects((prev) => [prev[0]]);
-        }
-    }, [allowMultipleExpanded, expandedProjects]);
-
-    useEffect(() => {
         const handleEsc = (event) => {
             if (event.key === "Escape") {
                 setActiveCaseStudy(null);
@@ -264,6 +258,17 @@ function Projects() {
 
     const scrollLeft = () => setIndex((prev) => Math.max(Math.min(prev, maxIndex) - 1, 0));
     const scrollRight = () => setIndex((prev) => Math.min(Math.min(prev, maxIndex) + 1, maxIndex));
+
+    const toggleExpandMode = () => {
+        setAllowMultipleExpanded((prevMode) => {
+            const nextMode = !prevMode;
+            if (!nextMode) {
+                setExpandedProjects((prevExpanded) => (prevExpanded.length ? [prevExpanded[0]] : []));
+            }
+            return nextMode;
+        });
+    };
+
     const toggleExpandedProject = (title) => {
         setExpandedProjects((prev) => {
             const isOpen = prev.includes(title);
@@ -439,7 +444,7 @@ function Projects() {
                     <h3 className="text-2xl font-bold text-gray-100">Featured Projects</h3>
                     <button
                         type="button"
-                        onClick={() => setAllowMultipleExpanded((prev) => !prev)}
+                        onClick={toggleExpandMode}
                         className="w-fit rounded-full border border-white/20 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.12em] text-gray-300 hover:border-white/40 hover:text-white ui-interactive"
                         aria-pressed={allowMultipleExpanded}
                     >
