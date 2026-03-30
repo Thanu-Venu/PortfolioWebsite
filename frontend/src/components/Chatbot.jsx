@@ -16,6 +16,110 @@ const QUICK_PROMPTS = [
     "Contact",
 ];
 
+function renderInlineText(text, keyPrefix) {
+    const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`)/g);
+
+    return parts.map((part, idx) => {
+        const key = `${keyPrefix}-${idx}`;
+
+        if (part.startsWith("**") && part.endsWith("**")) {
+            return <strong key={key} className="font-semibold text-white">{part.slice(2, -2)}</strong>;
+        }
+
+        if (part.startsWith("`") && part.endsWith("`")) {
+            return (
+                <code key={key} className="rounded bg-black/35 px-1.5 py-0.5 text-[12px] text-[#f1e5ca]">
+                    {part.slice(1, -1)}
+                </code>
+            );
+        }
+
+        return <span key={key}>{part}</span>;
+    });
+}
+
+function renderStructuredText(text) {
+    const lines = text.replace(/\r/g, "").split("\n");
+    const blocks = [];
+    let listItems = [];
+    let listType = "ul";
+
+    const flushList = () => {
+        if (!listItems.length) return;
+
+        if (listType === "ol") {
+            blocks.push(
+                <ol key={`list-${blocks.length}`} className="list-decimal space-y-1 pl-5 text-gray-100">
+                    {listItems.map((item, idx) => (
+                        <li key={`item-${idx}`}>{renderInlineText(item, `ol-${blocks.length}-${idx}`)}</li>
+                    ))}
+                </ol>
+            );
+        } else {
+            blocks.push(
+                <ul key={`list-${blocks.length}`} className="list-disc space-y-1 pl-5 text-gray-100">
+                    {listItems.map((item, idx) => (
+                        <li key={`item-${idx}`}>{renderInlineText(item, `ul-${blocks.length}-${idx}`)}</li>
+                    ))}
+                </ul>
+            );
+        }
+
+        listItems = [];
+    };
+
+    lines.forEach((rawLine, idx) => {
+        const line = rawLine.trim();
+
+        if (!line) {
+            flushList();
+            return;
+        }
+
+        const orderedMatch = line.match(/^\d+\.\s+(.*)$/);
+        if (orderedMatch) {
+            if (listType !== "ol") {
+                flushList();
+            }
+            listType = "ol";
+            listItems.push(orderedMatch[1]);
+            return;
+        }
+
+        const bulletMatch = line.match(/^[-*]\s+(.*)$/);
+        if (bulletMatch) {
+            if (listType !== "ul") {
+                flushList();
+            }
+            listType = "ul";
+            listItems.push(bulletMatch[1]);
+            return;
+        }
+
+        flushList();
+
+        const headingMatch = line.match(/^#{1,4}\s+(.*)$/);
+        if (headingMatch) {
+            blocks.push(
+                <p key={`heading-${idx}`} className="font-semibold tracking-wide text-white">
+                    {renderInlineText(headingMatch[1], `heading-${idx}`)}
+                </p>
+            );
+            return;
+        }
+
+        blocks.push(
+            <p key={`p-${idx}`} className="text-gray-100 leading-relaxed">
+                {renderInlineText(line, `p-${idx}`)}
+            </p>
+        );
+    });
+
+    flushList();
+
+    return <div className="space-y-2">{blocks}</div>;
+}
+
 function Chatbot() {
     const [messages, setMessages] = useState([
         { text: "Hey! 👋 How can I help you today?", sender: "bot" }
@@ -169,7 +273,7 @@ function Chatbot() {
                                     : "bg-white/25 sm:bg-white/20 border border-white/30 text-gray-50 rounded-bl-none"
                                 }`}
                         >
-                            {msg.text}
+                            {msg.sender === "bot" && !msg.isError ? renderStructuredText(msg.text) : msg.text}
                             {msg.sender === "bot" && msg.source && (
                                 <div className="mt-2 text-[10px] tracking-[0.12em] uppercase text-gray-300/90">
                                     Source: {msg.source === "gemini" ? "Gemini" : "Fallback"}
