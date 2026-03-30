@@ -2,20 +2,20 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 function Contact() {
     return (
-        <section id="Contact" className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80 flex flex-col justify-center items-center text-center reveal">
+        <section id="Contact" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80 flex flex-col justify-center items-center text-center">
 
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 stagger-item" style={{ "--reveal-delay": "60ms" }}>
                 Contact
             </h2>
 
-            <div className="h-1 w-20 rounded-full accent-line mb-8"></div>
+            <div className="h-1 w-20 rounded-full accent-line mb-8 stagger-item" style={{ "--reveal-delay": "120ms" }}></div>
 
-            <p className="text-gray-300 mb-10 max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm px-6 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
+            <p className="text-gray-300 mb-10 max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm px-6 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive stagger-item" style={{ "--reveal-delay": "200ms" }}>
                 Feel free to reach out if you'd like to collaborate, discuss a project, or just connect.
             </p>
 
             {/* ICON LINKS */}
-            <div className="flex gap-6">
+            <div className="flex gap-6 stagger-item" style={{ "--reveal-delay": "280ms" }}>
 
                 <a
                     href="mailto:thanu.venu28@gmail.com"
