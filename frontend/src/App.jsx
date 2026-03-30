@@ -13,6 +13,10 @@ function App() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobileViewport = window.matchMedia("(max-width: 768px)").matches;
+    const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const shouldFastReveal = isMobileViewport || isCoarsePointer;
+
     if (prefersReducedMotion) {
       setScrollProgress(100);
       document.querySelectorAll(".js-reveal").forEach((node) => node.classList.add("is-visible"));
@@ -31,6 +35,17 @@ function App() {
       });
     };
 
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    if (shouldFastReveal) {
+      document.querySelectorAll(".js-reveal").forEach((node) => node.classList.add("is-visible"));
+      return () => {
+        cancelAnimationFrame(rafId);
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
+
     const revealElements = document.querySelectorAll(".js-reveal");
     const observer = new IntersectionObserver(
       (entries) => {
@@ -48,8 +63,6 @@ function App() {
     );
 
     revealElements.forEach((item) => observer.observe(item));
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       cancelAnimationFrame(rafId);

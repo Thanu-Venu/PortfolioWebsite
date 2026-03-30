@@ -309,6 +309,19 @@ body {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
 }
 
+@media (max-width: 768px) {
+  .section-reveal {
+    transition-duration: 300ms;
+    transform: translate3d(0, 10px, 0);
+  }
+
+  .stagger-item {
+    transition-duration: 260ms;
+    transition-delay: 0ms;
+    transform: translate3d(0, 8px, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .reveal,
