@@ -7,9 +7,12 @@ function Home() {
                 Hi, I'm <span className="hero-name-wrap"><span className="hero-sheen hero-name">Thanu</span></span>
             </h1>
 
+            <p className="mt-3 text-xs md:text-sm tracking-wide text-gray-400 reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "140ms" }}>
+                Undergraduate in Computer Science at UCSC (University of Colombo School of Computing)
+            </p>
+
             <p className="mt-7 text-gray-300 max-w-2xl text-lg md:text-xl leading-relaxed reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "180ms" }}>
-                Software Engineer passionate about building scalable systems
-                and exploring AI-driven applications.
+                Building scalable software and AI-driven applications.
             </p>
 
             <div className="mt-10 flex gap-4 flex-wrap justify-center reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "260ms" }}>

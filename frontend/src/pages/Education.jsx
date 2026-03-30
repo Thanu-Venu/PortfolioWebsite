@@ -21,6 +21,28 @@ function Education() {
                         current CGPA: 3.55/4.0
                     </p>
                 </div>
+
+                <div className="mt-6 grid md:grid-cols-2 gap-4">
+                    <div className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
+                        <h4 className="text-md font-semibold">GCE Advanced Level (Physical Science)</h4>
+                        <p className="text-gray-300 text-sm mt-2 leading-relaxed">
+                            School: Vavuniya Rambaikulam Girls' Maha Vidyalayam
+                            <br />
+                            Results: 2AB
+                            <br />
+                            Z Score: 1.8869
+                        </p>
+                    </div>
+
+                    <div className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
+                        <h4 className="text-md font-semibold">GCE Ordinary Level</h4>
+                        <p className="text-gray-300 text-sm mt-2 leading-relaxed">
+                            School: Vavuniya Rambaikulam Girls' Maha Vidyalayam
+                            <br />
+                            Results: 9A's
+                        </p>
+                    </div>
+                </div>
             </div>
 
             {/* CERTIFICATIONS */}
