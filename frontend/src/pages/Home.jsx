@@ -8,7 +8,7 @@ function Home() {
             </h1>
 
             <p className="mt-3 text-xs md:text-sm tracking-wide text-gray-400 reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "140ms" }}>
-                Undergraduate in Computer Science at UCSC (University of Colombo School of Computing)
+                Undergraduate in Computer Science at UCSC
             </p>
 
             <p className="mt-7 text-gray-300 max-w-2xl text-lg md:text-xl leading-relaxed reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "180ms" }}>
