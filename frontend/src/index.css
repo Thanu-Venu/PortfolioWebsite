@@ -376,6 +376,20 @@ body {
     display: none;
   }
 
+  .hero-name-wrap {
+    padding-bottom: 0;
+  }
+
+  .hero-name {
+    animation: text-sheen 4.8s linear infinite;
+    filter: none;
+  }
+
+  .hero-name-wrap::after {
+    display: none;
+    animation: none;
+  }
+
   .section-reveal {
     transition-duration: 300ms;
     transform: translate3d(0, 10px, 0);
