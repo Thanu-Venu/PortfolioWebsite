@@ -8,8 +8,15 @@ import Contact from "./pages/Contact";
 import Education from "./pages/Education";
 import FloatingChatButton from "./components/FloatingChatButton";
 
+function getInitialScrollProgress() {
+  if (typeof window === "undefined") return 0;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return prefersReducedMotion ? 100 : 0;
+}
+
 function App() {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(getInitialScrollProgress);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -18,7 +25,6 @@ function App() {
     const shouldFastReveal = isMobileViewport || isCoarsePointer;
 
     if (prefersReducedMotion) {
-      setScrollProgress(100);
       document.querySelectorAll(".js-reveal").forEach((node) => node.classList.add("is-visible"));
       return;
     }
@@ -36,7 +42,6 @@ function App() {
     };
 
     if (shouldFastReveal) {
-      setScrollProgress(0);
       document.querySelectorAll(".js-reveal").forEach((node) => node.classList.add("is-visible"));
       return () => cancelAnimationFrame(rafId);
     }
