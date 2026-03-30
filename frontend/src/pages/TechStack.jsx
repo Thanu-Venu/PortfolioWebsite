@@ -4,18 +4,18 @@ import { VscCode } from "react-icons/vsc";
 
 function TechStack() {
     return (
-        <section id="TechStack" className="min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80 reveal">
+        <section id="TechStack" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80">
 
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-12 tracking-tight stagger-item" style={{ "--reveal-delay": "60ms" }}>
                 Tech Stack
             </h2>
 
-            <div className="h-1 w-20 rounded-full accent-line mb-10"></div>
+            <div className="h-1 w-20 rounded-full accent-line mb-10 stagger-item" style={{ "--reveal-delay": "120ms" }}></div>
 
             <div className="grid md:grid-cols-2 gap-8">
 
                 {/* ===== Programming ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive">
+                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive" style={{ "--reveal-delay": "180ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Programming</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -31,7 +31,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Frontend ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive">
+                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive" style={{ "--reveal-delay": "250ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Frontend</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -47,7 +47,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Backend ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive">
+                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive" style={{ "--reveal-delay": "320ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Backend</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -62,7 +62,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Databases ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive">
+                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive" style={{ "--reveal-delay": "390ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Databases</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -75,7 +75,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== DevOps ===== */}
-                <div className="rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:col-span-2 ui-interactive">
+                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:col-span-2 ui-interactive" style={{ "--reveal-delay": "460ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">DevOps & Tools</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
