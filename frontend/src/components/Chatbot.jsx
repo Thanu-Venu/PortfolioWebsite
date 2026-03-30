@@ -7,6 +7,15 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (
         : "https://thanu-venu-portfolio.onrender.com"
 );
 
+const QUICK_PROMPTS = [
+    "Projects",
+    "Skills",
+    "Education",
+    "Experience",
+    "Tech Stack",
+    "Contact",
+];
+
 function Chatbot() {
     const [messages, setMessages] = useState([
         { text: "Hey! 👋 How can I help you today?", sender: "bot" }
@@ -51,11 +60,11 @@ function Chatbot() {
         };
     }, [showMetrics]);
 
-    const handleSend = async () => {
-        if (!input.trim() || loading) return;
+    const handleSend = async (messageOverride) => {
+        const userInput = messageOverride?.trim() || input.trim();
+        if (!userInput || loading) return;
 
-        const userMessage = { text: input, sender: "user" };
-        const userInput = input;
+        const userMessage = { text: userInput, sender: "user" };
 
         setMessages(prev => [...prev, userMessage]);
         setInput("");
@@ -103,6 +112,11 @@ function Chatbot() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleQuickPrompt = (prompt) => {
+        if (loading) return;
+        handleSend(`Tell me about your ${prompt.toLowerCase()}.`);
     };
 
     return (
@@ -180,12 +194,29 @@ function Chatbot() {
 
             {/* Input */}
             <div className="border-t border-white/20 p-4 bg-black/85 sm:bg-gradient-to-t sm:from-white/5 sm:to-transparent rounded-b-2xl">
+                <div className="mb-3">
+                    <p className="mb-2 text-[10px] uppercase tracking-[0.14em] text-gray-400">Quick Topics</p>
+                    <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                        {QUICK_PROMPTS.map((prompt) => (
+                            <button
+                                key={prompt}
+                                type="button"
+                                onClick={() => handleQuickPrompt(prompt)}
+                                disabled={loading}
+                                className="shrink-0 rounded-full border border-white/20 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.1em] text-gray-300 hover:text-white hover:border-white/45 ui-interactive disabled:opacity-40 disabled:cursor-not-allowed"
+                            >
+                                {prompt}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
                 <div className="flex gap-3">
                     <input
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        onKeyPress={(e) => e.key === "Enter" && !loading && handleSend()}
+                        onKeyDown={(e) => e.key === "Enter" && !loading && handleSend()}
                         placeholder="Type your message..."
                         disabled={loading}
                         className="flex-1 bg-white/20 sm:bg-white/15 border border-white/30 rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-300 focus:outline-none focus:border-[var(--accent-gold)]/60 focus:bg-white/25 sm:focus:bg-white/20 transition-all disabled:opacity-50"
