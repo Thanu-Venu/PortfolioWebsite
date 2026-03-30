@@ -35,16 +35,14 @@ function App() {
       });
     };
 
+    if (shouldFastReveal) {
+      setScrollProgress(0);
+      document.querySelectorAll(".js-reveal").forEach((node) => node.classList.add("is-visible"));
+      return () => cancelAnimationFrame(rafId);
+    }
+
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    if (shouldFastReveal) {
-      document.querySelectorAll(".js-reveal").forEach((node) => node.classList.add("is-visible"));
-      return () => {
-        cancelAnimationFrame(rafId);
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }
 
     const revealElements = document.querySelectorAll(".js-reveal");
     const observer = new IntersectionObserver(

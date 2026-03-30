@@ -310,6 +310,19 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    touch-action: pan-y;
+    overscroll-behavior-y: contain;
+  }
+
+  .scroll-progress-wrap {
+    display: none;
+  }
+
+  .ambient-orb {
+    display: none;
+  }
+
   .section-reveal {
     transition-duration: 300ms;
     transform: translate3d(0, 10px, 0);
@@ -319,6 +332,10 @@ body {
     transition-duration: 260ms;
     transition-delay: 0ms;
     transform: translate3d(0, 8px, 0);
+  }
+
+  .case-study-scroll {
+    -webkit-overflow-scrolling: touch;
   }
 }
 
