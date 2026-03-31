@@ -165,7 +165,9 @@ function Chatbot() {
     }, [showMetrics]);
 
     const handleSend = async (messageOverride) => {
-        const userInput = messageOverride?.trim() || input.trim();
+        const userInput = typeof messageOverride === "string"
+            ? messageOverride.trim()
+            : input.trim();
         if (!userInput || loading) return;
 
         const userMessage = { text: userInput, sender: "user" };
@@ -326,7 +328,8 @@ function Chatbot() {
                         className="flex-1 bg-white/20 sm:bg-white/15 border border-white/30 rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-300 focus:outline-none focus:border-[var(--accent-gold)]/60 focus:bg-white/25 sm:focus:bg-white/20 transition-all disabled:opacity-50"
                     />
                     <button
-                        onClick={handleSend}
+                        type="button"
+                        onClick={() => handleSend()}
                         disabled={loading || !input.trim()}
                         className="bg-[var(--accent-gold)] hover:bg-[#d4b97e] text-black px-5 py-2.5 rounded-xl font-semibold text-sm transition-all ui-interactive disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_8px_24px_rgba(198,169,107,0.24)]"
                     >
