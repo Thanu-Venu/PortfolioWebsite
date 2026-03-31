@@ -56,7 +56,7 @@ function FloatingChatButton() {
 
                 {!open && (
                     <div className="pointer-events-none absolute right-[calc(100%+10px)] top-1/2 hidden w-64 -translate-y-1/2 rounded-xl border border-white/15 bg-black/85 px-3 py-2 text-xs leading-relaxed text-gray-200 opacity-0 shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 md:block">
-                        Talk with THANU&apos;s AI Assistant about Thanu.
+                        Chat with my AI Assistant.
                     </div>
                 )}
             </div>
