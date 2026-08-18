@@ -5,6 +5,20 @@
 :root {
   --accent-gold: #c6a96b;
   --accent-gold-soft: rgba(198, 169, 107, 0.32);
+  /* Theme tokens (dark = default). Every hardcoded "white-ish" utility in the
+     app was rewritten to consume --fg-rgb, and every "black-ish" utility to
+     consume --bg-rgb, so toggling `.light` on <html> re-themes the whole site. */
+  --fg-rgb: 255 255 255;
+  --bg-rgb: 5 5 5;
+  --bg-rgb-2: 10 10 10;
+}
+
+html.light {
+  --accent-gold: #8a6a2c;
+  --accent-gold-soft: rgba(138, 106, 44, 0.28);
+  --fg-rgb: 22 18 10;
+  --bg-rgb: 250 248 244;
+  --bg-rgb-2: 255 255 255;
 }
 
 html {
@@ -14,11 +28,12 @@ html {
 
 body {
   font-family: "Satoshi", "General Sans", "Manrope", "Segoe UI", sans-serif;
-  background: #050505;
-  color: #f8f8f8;
+  background: rgb(var(--bg-rgb));
+  color: rgb(var(--fg-rgb));
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 @keyframes reveal-up {
@@ -474,4 +489,121 @@ body {
 
 ::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0.25);
+}
+
+/* ================= LIGHT THEME ================= */
+
+/* Page-wide decorative background layer (behind everything, App.jsx) */
+.page-ambient-gradient {
+  background:
+    radial-gradient(circle at 20% 15%, rgb(var(--fg-rgb) / 9%), transparent 35%),
+    radial-gradient(circle at 80% 80%, rgb(var(--fg-rgb) / 6%), transparent 30%),
+    linear-gradient(to bottom, rgb(var(--bg-rgb)), rgb(var(--bg-rgb-2)) 40%, rgb(var(--bg-rgb)));
+}
+
+.page-ambient-dots {
+  opacity: 0.08;
+  background-image: radial-gradient(rgb(var(--fg-rgb)) 0.7px, transparent 0.7px);
+}
+
+html.light .page-ambient-dots {
+  opacity: 0.05;
+}
+
+/* Previously-dead utility classes referenced in JSX (Projects.jsx) with no
+   matching Tailwind config entry — defined here so the intended glow actually
+   renders, in both themes. */
+.shadow-glow {
+  box-shadow: 0 0 16px rgb(var(--fg-rgb) / 20%);
+}
+
+.hover\:shadow-glow:hover {
+  box-shadow: 0 0 20px rgb(var(--fg-rgb) / 25%);
+}
+
+/* Hero name shimmer, ambient glow blobs and the nav-pill hover sheen all use
+   literal white-based gradients that would be invisible on a light page. */
+html.light .hero-sheen {
+  background-image: linear-gradient(115deg, #2b2b2b 10%, #0a0a0a 36%, #4a4a4a 50%, #0a0a0a 64%, #2b2b2b 90%);
+  -webkit-text-stroke: 0.55px rgba(20, 16, 8, 0.22);
+  text-shadow: 0 0 14px rgba(20, 16, 8, 0.1);
+}
+
+html.light .ambient-orb {
+  background: radial-gradient(circle, rgba(198, 169, 107, 0.35), rgba(198, 169, 107, 0));
+}
+
+html.light .premium-card::after {
+  background: linear-gradient(115deg,
+      transparent 25%,
+      rgba(20, 16, 8, 0.05) 42%,
+      rgba(20, 16, 8, 0.09) 50%,
+      rgba(20, 16, 8, 0.05) 58%,
+      transparent 74%);
+}
+
+html.light .case-section {
+  border: 1px solid rgba(20, 16, 8, 0.1);
+  background: linear-gradient(180deg, rgba(20, 16, 8, 0.035), rgba(20, 16, 8, 0.015));
+}
+
+html.light .case-study-scroll {
+  scrollbar-color: rgba(138, 106, 44, 0.8) rgba(20, 16, 8, 0.06);
+}
+
+/* Profile photo decoration (About.jsx) draws its spokes with a literal
+   stroke="rgba(255,255,255,0.9)" SVG attribute — override via attribute
+   selector so no JSX change is required to keep it visible in light mode. */
+html.light svg line[stroke="rgba(255,255,255,0.9)"] {
+  stroke: rgba(20, 16, 8, 0.5);
+}
+
+/* Chatbot Gemini/Fallback status badge uses literal emerald/amber Tailwind
+   classes (not theme tokens) — the pale shades read fine on the dark panel
+   but fail contrast on white, so darken them specifically in light mode. */
+html.light .text-emerald-300 {
+  color: #047857;
+}
+
+html.light .border-emerald-400\/50 {
+  border-color: rgba(4, 120, 87, 0.45);
+}
+
+html.light .bg-emerald-500\/10 {
+  background-color: rgba(4, 120, 87, 0.08);
+}
+
+html.light .text-amber-300 {
+  color: #b45309;
+}
+
+html.light .border-amber-400\/50 {
+  border-color: rgba(180, 83, 9, 0.45);
+}
+
+html.light .bg-amber-500\/10 {
+  background-color: rgba(180, 83, 9, 0.08);
+}
+
+html.light * {
+  scrollbar-color: rgba(138, 106, 44, 0.75) rgba(20, 16, 8, 0.08);
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, rgba(20, 16, 8, 0.06), rgba(20, 16, 8, 0.02));
+  border-left: 1px solid rgba(20, 16, 8, 0.08);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(180deg, rgba(180, 145, 80, 0.9), rgba(138, 106, 44, 0.9));
+  box-shadow: 0 0 12px rgba(138, 106, 44, 0.22);
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(180deg, rgba(196, 160, 90, 0.95), rgba(150, 116, 50, 0.95));
+  box-shadow: 0 0 16px rgba(138, 106, 44, 0.36);
+}
+
+html.light ::-webkit-scrollbar-corner {
+  background: rgba(20, 16, 8, 0.06);
 }

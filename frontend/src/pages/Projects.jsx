@@ -388,18 +388,18 @@ function Projects() {
                 onClick={() => setActiveCaseStudy(null)}
             >
                 <div
-                    className="case-study-panel w-full max-w-3xl rounded-2xl border border-white/20 bg-[#0a0a0a] shadow-[0_24px_80px_rgba(0,0,0,0.62)] max-h-[90vh] overflow-hidden"
+                    className="case-study-panel w-full max-w-3xl rounded-2xl border border-[rgb(var(--fg-rgb)/16%)] bg-[rgb(var(--bg-rgb))] shadow-[0_24px_80px_rgba(0,0,0,0.62)] max-h-[90vh] overflow-hidden"
                     onClick={(event) => event.stopPropagation()}
                 >
-                    <div className="flex items-start justify-between gap-3 border-b border-white/10 px-5 py-4 md:px-6 md:py-5">
+                    <div className="flex items-start justify-between gap-3 border-b border-[rgb(var(--fg-rgb)/10%)] px-5 py-4 md:px-6 md:py-5">
                         <div>
                             <p className="text-[10px] uppercase tracking-[0.14em] text-[color:var(--accent-gold)] mb-1">Case Study</p>
-                            <h4 className="text-xl md:text-2xl font-semibold text-white leading-tight">{activeCaseStudy.title}</h4>
+                            <h4 className="text-xl md:text-2xl font-semibold text-[rgb(var(--fg-rgb))] leading-tight">{activeCaseStudy.title}</h4>
                         </div>
                         <button
                             type="button"
                             onClick={() => setActiveCaseStudy(null)}
-                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-gray-300 hover:text-white hover:border-white ui-interactive"
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-[rgb(var(--fg-rgb)/16%)] text-[rgb(var(--fg-rgb)/72%)] hover:text-[rgb(var(--fg-rgb))] hover:border-[rgb(var(--fg-rgb))] ui-interactive"
                             aria-label="Close case study"
                         >
                             ×
@@ -407,10 +407,10 @@ function Projects() {
                     </div>
 
                     <div className="case-study-scroll overflow-y-auto max-h-[64vh] px-5 py-4 md:px-6 md:py-5 overscroll-contain">
-                        <p className="mb-4 text-sm text-gray-300 leading-relaxed">{activeCaseStudy.caseStudy.overview}</p>
-                        <p className="mb-5 text-xs font-medium tracking-[0.08em] uppercase text-gray-400">{activeCaseStudy.stack}</p>
+                        <p className="mb-4 text-sm text-[rgb(var(--fg-rgb)/72%)] leading-relaxed">{activeCaseStudy.caseStudy.overview}</p>
+                        <p className="mb-5 text-xs font-medium tracking-[0.08em] uppercase text-[rgb(var(--fg-rgb)/58%)]">{activeCaseStudy.stack}</p>
 
-                        <div className="space-y-5 text-sm text-gray-200">
+                        <div className="space-y-5 text-sm text-[rgb(var(--fg-rgb)/80%)]">
                             <div className="case-section">
                                 <p className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-[color:var(--accent-gold)]">
                                     <svg
@@ -429,7 +429,7 @@ function Projects() {
                                     </svg>
                                     Challenge
                                 </p>
-                                <p className="leading-relaxed text-gray-300">{activeCaseStudy.caseStudy.challenge}</p>
+                                <p className="leading-relaxed text-[rgb(var(--fg-rgb)/72%)]">{activeCaseStudy.caseStudy.challenge}</p>
                             </div>
 
                             <div className="case-section">
@@ -449,7 +449,7 @@ function Projects() {
                                     </svg>
                                     Implementation Approach
                                 </p>
-                                <ul className="space-y-2 border-l border-white/20 pl-3 text-gray-200">
+                                <ul className="space-y-2 border-l border-[rgb(var(--fg-rgb)/16%)] pl-3 text-[rgb(var(--fg-rgb)/80%)]">
                                     {activeCaseStudy.caseStudy.approach.map((item) => (
                                         <li key={item} className="leading-relaxed">{item}</li>
                                     ))}
@@ -474,7 +474,7 @@ function Projects() {
                                     </svg>
                                     Architecture Highlights
                                 </p>
-                                <ul className="space-y-2 border-l border-white/20 pl-3 text-gray-200">
+                                <ul className="space-y-2 border-l border-[rgb(var(--fg-rgb)/16%)] pl-3 text-[rgb(var(--fg-rgb)/80%)]">
                                     {activeCaseStudy.caseStudy.architecture.map((item) => (
                                         <li key={item} className="leading-relaxed">{item}</li>
                                     ))}
@@ -499,7 +499,7 @@ function Projects() {
                                     </svg>
                                     Outcomes
                                 </p>
-                                <ul className="space-y-2 border-l border-white/20 pl-3 text-gray-200">
+                                <ul className="space-y-2 border-l border-[rgb(var(--fg-rgb)/16%)] pl-3 text-[rgb(var(--fg-rgb)/80%)]">
                                     {activeCaseStudy.caseStudy.outcomes.map((item) => (
                                         <li key={item} className="leading-relaxed">{item}</li>
                                     ))}
@@ -508,11 +508,11 @@ function Projects() {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-end gap-3 border-t border-white/10 px-5 py-4 md:px-6 md:py-5">
+                    <div className="flex items-center justify-end gap-3 border-t border-[rgb(var(--fg-rgb)/10%)] px-5 py-4 md:px-6 md:py-5">
                         <button
                             type="button"
                             onClick={() => setActiveCaseStudy(null)}
-                            className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.12em] text-gray-300 hover:text-white hover:border-white ui-interactive"
+                            className="rounded-full border border-[rgb(var(--fg-rgb)/16%)] px-4 py-2 text-xs uppercase tracking-[0.12em] text-[rgb(var(--fg-rgb)/72%)] hover:text-[rgb(var(--fg-rgb))] hover:border-[rgb(var(--fg-rgb))] ui-interactive"
                         >
                             Close
                         </button>
@@ -533,18 +533,18 @@ function Projects() {
 
     return (
         <>
-            <section id="Projects" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-gray-700/40 backdrop-blur-sm">
+            <section id="Projects" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-[rgb(var(--fg-rgb)/10%)] backdrop-blur-sm">
                 <div className="mb-12 stagger-item" style={{ "--reveal-delay": "60ms" }}>
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Projects</h2>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[rgb(var(--fg-rgb))]">Projects</h2>
                     <div className="h-1 w-20 rounded-full accent-line"></div>
                 </div>
 
                 <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between stagger-item" style={{ "--reveal-delay": "120ms" }}>
-                    <h3 className="text-2xl font-bold text-gray-100">Featured Projects</h3>
+                    <h3 className="text-2xl font-bold text-[rgb(var(--fg-rgb)/88%)]">Featured Projects</h3>
                     <button
                         type="button"
                         onClick={toggleExpandMode}
-                        className="w-fit rounded-full border border-white/20 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.12em] text-gray-300 hover:border-white/40 hover:text-white ui-interactive"
+                        className="w-fit rounded-full border border-[rgb(var(--fg-rgb)/16%)] bg-[rgb(var(--fg-rgb)/3%)] px-4 py-2 text-xs uppercase tracking-[0.12em] text-[rgb(var(--fg-rgb)/72%)] hover:border-[rgb(var(--fg-rgb)/28%)] hover:text-[rgb(var(--fg-rgb))] ui-interactive"
                         aria-pressed={allowMultipleExpanded}
                     >
                         {allowMultipleExpanded ? "Mode: Multiple Open" : "Mode: Single Open"}
@@ -557,23 +557,23 @@ function Projects() {
                         return (
                             <div
                                 key={project.title}
-                                className="group stagger-item border border-gray-700/50 p-6 rounded-xl hover:border-gray-300/60 bg-gradient-to-br from-gray-900/50 to-gray-800/30 hover:from-gray-800/70 hover:to-gray-700/50 hover:shadow-glow backdrop-blur-sm ui-interactive"
+                                className="group stagger-item border border-[rgb(var(--fg-rgb)/12%)] p-6 rounded-xl hover:border-[rgb(var(--fg-rgb)/40%)] bg-gradient-to-br from-[rgb(var(--fg-rgb)/4%)] to-[rgb(var(--fg-rgb)/3%)] hover:from-[rgb(var(--fg-rgb)/7%)] hover:to-[rgb(var(--fg-rgb)/5%)] hover:shadow-glow backdrop-blur-sm ui-interactive"
                                 style={{ "--reveal-delay": `${180 + i * 70}ms` }}
                             >
-                                <h4 className="text-xl font-semibold mb-3 text-gray-100 group-hover:text-white transition">
+                                <h4 className="text-xl font-semibold mb-3 text-[rgb(var(--fg-rgb)/88%)] group-hover:text-[rgb(var(--fg-rgb))] transition">
                                     {project.title}
                                 </h4>
 
-                                <p className="text-gray-300 mb-4 leading-relaxed text-sm">{project.description}</p>
+                                <p className="text-[rgb(var(--fg-rgb)/72%)] mb-4 leading-relaxed text-sm">{project.description}</p>
 
-                                <p className="text-xs text-gray-300 mb-4 font-medium">{project.stack}</p>
+                                <p className="text-xs text-[rgb(var(--fg-rgb)/72%)] mb-4 font-medium">{project.stack}</p>
 
                                 <div
                                     id={`project-details-${i}`}
                                     className="overflow-hidden transition-all duration-300"
                                     style={{ maxHeight: isExpanded ? "260px" : "0px", opacity: isExpanded ? 1 : 0 }}
                                 >
-                                    <ul className="mb-4 space-y-2 text-sm text-gray-300/95 border-l border-white/20 pl-3">
+                                    <ul className="mb-4 space-y-2 text-sm text-[rgb(var(--fg-rgb)/65%)] border-l border-[rgb(var(--fg-rgb)/16%)] pl-3">
                                         {project.details.map((detail) => (
                                             <li key={detail} className="leading-relaxed">{detail}</li>
                                         ))}
@@ -584,7 +584,7 @@ function Projects() {
                                     <button
                                         type="button"
                                         onClick={() => toggleExpandedProject(project.title)}
-                                        className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] border border-white/30 rounded-full px-3 py-1.5 text-gray-200 hover:text-white hover:border-white ui-interactive"
+                                        className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.14em] border border-[rgb(var(--fg-rgb)/22%)] rounded-full px-3 py-1.5 text-[rgb(var(--fg-rgb)/80%)] hover:text-[rgb(var(--fg-rgb))] hover:border-[rgb(var(--fg-rgb))] ui-interactive"
                                         aria-expanded={isExpanded}
                                         aria-controls={`project-details-${i}`}
                                     >
@@ -617,7 +617,7 @@ function Projects() {
                                         href={project.href}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-gray-600 text-white group-hover:border-white hover:bg-white hover:text-black hover:shadow-glow ui-interactive"
+                                        className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-[rgb(var(--fg-rgb)/28%)] text-[rgb(var(--fg-rgb))] group-hover:border-[rgb(var(--fg-rgb))] hover:bg-[rgb(var(--fg-rgb))] hover:text-[rgb(var(--bg-rgb))] hover:shadow-glow ui-interactive"
                                     >
                                         <FaGithub size={18} />
                                     </a>
@@ -627,13 +627,13 @@ function Projects() {
                     })}
                 </div>
 
-                <h3 className="text-2xl font-bold mb-8 text-gray-100 stagger-item" style={{ "--reveal-delay": "320ms" }}>Mini Projects</h3>
+                <h3 className="text-2xl font-bold mb-8 text-[rgb(var(--fg-rgb)/88%)] stagger-item" style={{ "--reveal-delay": "320ms" }}>Mini Projects</h3>
 
                 <div className="relative mx-auto mb-20 w-full max-w-[320px] px-2 sm:max-w-none sm:px-14 stagger-item" style={{ "--reveal-delay": "380ms" }}>
                     <button
                         onClick={scrollLeft}
                         disabled={clampedIndex === 0}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 bg-[rgb(var(--bg-rgb))] border border-[rgb(var(--fg-rgb)/38%)] px-3 py-2 z-10 hover:bg-[rgb(var(--fg-rgb))] hover:text-[rgb(var(--bg-rgb))] hover:border-[rgb(var(--fg-rgb))] disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-[rgb(var(--fg-rgb))] font-bold ui-interactive"
                     >
                         ←
                     </button>
@@ -649,7 +649,7 @@ function Projects() {
                             {miniProjects.map((project) => (
                                 <div
                                     key={project.title}
-                                    className="w-[232px] shrink-0 border border-gray-700/50 p-4 rounded-xl hover:scale-105 bg-gradient-to-br from-gray-900/50 to-gray-800/30 hover:shadow-glow hover:border-white/60 group backdrop-blur-sm ui-interactive"
+                                    className="w-[232px] shrink-0 border border-[rgb(var(--fg-rgb)/12%)] p-4 rounded-xl hover:scale-105 bg-gradient-to-br from-[rgb(var(--fg-rgb)/4%)] to-[rgb(var(--fg-rgb)/3%)] hover:shadow-glow hover:border-[rgb(var(--fg-rgb)/45%)] group backdrop-blur-sm ui-interactive"
                                 >
                                     <div className="overflow-hidden rounded-lg mb-3 relative h-30">
                                         <img
@@ -658,16 +658,16 @@ function Projects() {
                                             className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                                         />
                                     </div>
-                                    <h4 className="text-sm font-semibold text-gray-100 group-hover:text-white transition">
+                                    <h4 className="text-sm font-semibold text-[rgb(var(--fg-rgb)/88%)] group-hover:text-[rgb(var(--fg-rgb))] transition">
                                         {project.title}
                                     </h4>
-                                    <p className="text-gray-500 text-xs mt-1">{project.subtitle}</p>
+                                    <p className="text-[rgb(var(--fg-rgb)/94%)]0 text-xs mt-1">{project.subtitle}</p>
                                     <div className="flex justify-end mt-2">
                                         <a
                                             href={project.href}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-gray-600 text-white hover:border-white hover:bg-white hover:text-black ui-interactive"
+                                            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-[rgb(var(--fg-rgb)/28%)] text-[rgb(var(--fg-rgb))] hover:border-[rgb(var(--fg-rgb))] hover:bg-[rgb(var(--fg-rgb))] hover:text-[rgb(var(--bg-rgb))] ui-interactive"
                                         >
                                             <FaGithub size={14} />
                                         </a>
@@ -680,7 +680,7 @@ function Projects() {
                     <button
                         onClick={scrollRight}
                         disabled={clampedIndex === maxIndex}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 bg-black border border-gray-500 px-3 py-2 z-10 hover:bg-white hover:text-black hover:border-white disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-white font-bold ui-interactive"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 bg-[rgb(var(--bg-rgb))] border border-[rgb(var(--fg-rgb)/38%)] px-3 py-2 z-10 hover:bg-[rgb(var(--fg-rgb))] hover:text-[rgb(var(--bg-rgb))] hover:border-[rgb(var(--fg-rgb))] disabled:opacity-30 disabled:cursor-not-allowed shadow-glow text-[rgb(var(--fg-rgb))] font-bold ui-interactive"
                     >
                         →
                     </button>

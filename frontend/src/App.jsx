@@ -75,13 +75,13 @@ function App() {
   }, []);
 
   return (
-    <div className="relative bg-black text-white min-h-screen overflow-hidden">
+    <div className="relative bg-[rgb(var(--bg-rgb))] text-[rgb(var(--fg-rgb))] min-h-screen overflow-hidden">
       <div className="scroll-progress-wrap" aria-hidden="true">
         <span className="scroll-progress-bar" style={{ width: `${scrollProgress}%` }} />
       </div>
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(255,255,255,0.09),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.06),transparent_30%),linear-gradient(to_bottom,#040404,#0a0a0a_40%,#070707)]"></div>
-        <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(#ffffff_0.7px,transparent_0.7px)] [background-size:3px_3px]"></div>
+        <div className="page-ambient-gradient absolute inset-0"></div>
+        <div className="page-ambient-dots absolute inset-0 [background-size:3px_3px]"></div>
         <div className="ambient-orb ambient-orb-a"></div>
         <div className="ambient-orb ambient-orb-b"></div>
       </div>

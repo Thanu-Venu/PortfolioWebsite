@@ -1,109 +1,39 @@
-function Education() {
+function Home() {
     return (
-        <section id="Education" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80">
+        <section id="Home" className="js-reveal section-reveal min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 pb-12 relative">
+            <p className="text-[11px] md:text-xs uppercase tracking-[0.28em] text-[rgb(var(--fg-rgb)/94%)]0 mb-5 reveal reveal-delay-1">Software Engineer Portfolio</p>
 
-            <h2 className="text-3xl md:text-5xl font-bold mb-12 stagger-item" style={{ "--reveal-delay": "60ms" }}>
-                Education & Certifications
-            </h2>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.95] reveal reveal-delay-1">
+                Hi, I'm <span className="hero-name-wrap"><span className="hero-sheen hero-name">Thanu</span></span>
+            </h1>
 
-            <div className="h-1 w-20 rounded-full accent-line mb-10 stagger-item" style={{ "--reveal-delay": "120ms" }}></div>
+            <p className="mt-3 text-xs md:text-sm tracking-wide text-[rgb(var(--fg-rgb)/58%)] reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "140ms" }}>
+                Undergraduate in Computer Science at UCSC
+            </p>
 
-            {/* EDUCATION */}
-            <div className="mb-16 stagger-item" style={{ "--reveal-delay": "180ms" }}>
-                <h3 className="text-xl font-semibold mb-4">Education</h3>
+            <p className="mt-7 text-[rgb(var(--fg-rgb)/72%)] max-w-2xl text-lg md:text-xl leading-relaxed reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "180ms" }}>
+                Building scalable software and AI-driven applications.
+            </p>
 
-                <div className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-6 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
-                    <h4 className="text-lg font-semibold">
-                        BSc in Computer Science
-                    </h4>
-                    <p className="text-gray-300 mt-2 leading-relaxed">
-                        University of Colombo School Of Computing • 2023 – Present<br></br>
-                        current CGPA: 3.55/4.0
-                    </p>
-                </div>
+            <div className="mt-10 flex gap-4 flex-wrap justify-center reveal reveal-delay-2 stagger-item" style={{ "--reveal-delay": "260ms" }}>
+                <a
+                    href="#Projects"
+                    className="px-7 py-3.5 border rounded-full accent-cta ui-interactive"
+                >
+                    View Projects
+                </a>
 
-                <div className="mt-6 grid md:grid-cols-2 gap-4">
-                    <div className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
-                        <h4 className="text-md font-semibold">GCE Advanced Level (Physical Science)</h4>
-                        <p className="text-gray-300 text-sm mt-2 leading-relaxed">
-                            School: Vavuniya Rambaikulam Girls' Maha Vidyalayam
-                            <br />
-                            Results: 2AB
-                            <br />
-                            Z Score: 1.8869
-                        </p>
-                    </div>
-
-                    <div className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive">
-                        <h4 className="text-md font-semibold">GCE Ordinary Level</h4>
-                        <p className="text-gray-300 text-sm mt-2 leading-relaxed">
-                            School: Vavuniya Rambaikulam Girls' Maha Vidyalayam
-                            <br />
-                            Results: 9A's
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            {/* CERTIFICATIONS */}
-            <div className="stagger-item" style={{ "--reveal-delay": "250ms" }}>
-                <h3 className="text-xl font-semibold mb-6">Certifications</h3>
-
-                <div className="grid md:grid-cols-2 gap-6">
-
-                    {/* CERT CARD */}
-                    <a href="/cert1.pdf" target="_blank" rel="noreferrer" className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl hover:border-white/70 hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] ui-interactive">
-                        <h4 className="text-md font-semibold">
-                            Python for Beginners
-                        </h4>
-                        <p className="text-gray-400 text-sm mt-1">
-                            University of Moratuwa • Nov 2025
-                        </p>
-                    </a>
-
-                    <a href="/cert3.pdf" target="_blank" rel="noreferrer" className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl hover:border-white/70 hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] ui-interactive">
-                        <h4 className="text-md font-semibold">
-                            Software Engineer Intern
-                        </h4>
-                        <p className="text-gray-400 text-sm mt-1">
-                            HackerRank • Oct 2025
-                        </p>
-                    </a>
-
-                    <a href="/cert4.pdf" target="_blank" rel="noreferrer" className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl hover:border-white/70 hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] ui-interactive">
-                        <h4 className="text-md font-semibold">
-                            Web Design for Beginners
-                        </h4>
-                        <p className="text-gray-400 text-sm mt-1">
-                            University of Moratuwa • May 2025
-                        </p>
-                    </a>
-
-                    <a href="/cert5.pdf" target="_blank" rel="noreferrer" className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl hover:border-white/70 hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] ui-interactive">
-                        <h4 className="text-md font-semibold">
-                            CSS Basics
-                        </h4>
-                        <p className="text-gray-400 text-sm mt-1">
-                            HackerRank • May 2025
-                        </p>
-                    </a>
-
-                    <a href="/cert6.pdf" target="_blank" rel="noreferrer" className="border border-white/15 bg-white/[0.02] backdrop-blur-sm p-5 rounded-2xl hover:border-white/70 hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] ui-interactive">
-                        <h4 className="text-md font-semibold">
-                            SQL Basics
-                        </h4>
-                        <p className="text-gray-400 text-sm mt-1">
-                            HackerRank • May 2025
-                        </p>
-                    </a>
-
-                </div>
-
+                <a
+                    href="/Thanu-CV.pdf"
+                    download="Thanu-CV.pdf"
+                    className="px-7 py-3.5 border border-[rgb(var(--fg-rgb)/28%)] rounded-full hover:border-[rgb(var(--fg-rgb))] hover:bg-[rgb(var(--fg-rgb)/10%)] ui-interactive"
+                >
+                    Download CV
+                </a>
             </div>
 
         </section>
     );
 }
 
-export default Education;
-
+export default Home;
