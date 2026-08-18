@@ -70,6 +70,105 @@ const featuredProjects = [
         },
     },
     {
+        title: "DevFlow",
+        description:
+            "A full-stack task management platform with JWT-authenticated REST APIs, an automated Jest/Supertest test suite run in CI, and a GitHub Actions CI/CD pipeline that independently builds, tests, and deploys the frontend and backend. Instrumented with Prometheus and Grafana for live monitoring.",
+        stack: "React • Node.js • MongoDB • Docker • GitHub Actions",
+        href: "https://github.com/Thanu-Venu/devflow",
+        details: [
+            "Built JWT-authenticated REST APIs backed by an automated Jest/Supertest test suite run in CI.",
+            "Set up a GitHub Actions CI/CD pipeline (lint, test, Docker build, deploy) with independent frontend/backend releases.",
+            "Instrumented the Docker Compose stack with Prometheus metrics and Grafana dashboards for monitoring.",
+        ],
+        caseStudy: {
+            overview:
+                "DevFlow was built to explore a full DevOps lifecycle end to end — not just shipping features, but building the pipeline, automated tests, and observability around them on top of a real task-management product.",
+            challenge:
+                "Keeping the frontend and backend independently deployable while still guaranteeing every change passed automated tests and produced a working, monitorable build.",
+            approach: [
+                "Designed JWT-based authentication and per-user REST APIs across the Node/Express backend.",
+                "Wrote an automated Jest/Supertest suite covering core API behavior and wired it into CI.",
+                "Built a GitHub Actions pipeline that lints, tests, builds Docker images, and deploys the frontend and backend independently.",
+            ],
+            architecture: [
+                "MERN stack (MongoDB, Express, React, Node.js) containerized with Docker Compose.",
+                "GitHub Actions workflows for CI (test/lint) and CD (build and deploy to Render).",
+                "Prometheus metrics scraping with Grafana dashboards for runtime visibility.",
+            ],
+            outcomes: [
+                "Shipped a fully automated pipeline from commit to deployed build.",
+                "Caught regressions before deployment via CI-enforced test runs.",
+                "Gained hands-on experience with monitoring and observability, not just feature delivery.",
+            ],
+        },
+    },
+    {
+        title: "Smart Home Monitoring & Control System",
+        description:
+            "A real-time smart-home platform pairing a native Android app with a React web simulator, sharing a single Firebase Realtime Database so device changes sync live across both clients. Includes per-device schedule automation and a safety-cutoff system.",
+        stack: "Kotlin • Jetpack Compose • React • Firebase",
+        href: "https://github.com/Thanu-Venu/smart-home-monitoring-system",
+        details: [
+            "Built a native Android app (Kotlin, Jetpack Compose, MVVM) and a React web simulator sharing one Firebase Realtime Database.",
+            "Implemented per-device schedule automation and a safety-cutoff system that auto-disables devices past a configurable ON duration.",
+            "Collaborated in a 3-member team on the shared data model, Firebase security rules, and real-time sync logic.",
+        ],
+        caseStudy: {
+            overview:
+                "This project explored real-time state synchronization across two very different clients — a native Android app and a web simulator — sharing one live data source, to model an actual IoT control system without physical hardware.",
+            challenge:
+                "Keeping device state consistent and instantly reflected across both clients, while preventing devices from being left on indefinitely or in conflicting states.",
+            approach: [
+                "Modeled devices and switches as Firebase Realtime Database nodes so both clients subscribe to the same live state.",
+                "Implemented MVVM architecture on Android with Jetpack Compose for a reactive, declarative UI.",
+                "Added schedule automation and a safety-cutoff watcher that auto-disables a device past a configurable ON duration.",
+            ],
+            architecture: [
+                "Kotlin + Jetpack Compose native Android app following MVVM.",
+                "React web simulator mirroring the same device state for cross-client testing.",
+                "Firebase Realtime Database and Auth as the shared backend and security layer.",
+            ],
+            outcomes: [
+                "Delivered live, bidirectional state sync between a mobile app and a web client.",
+                "Reduced simulated device-safety risk with automated cutoff logic.",
+                "Built real experience with Firebase security rules and multi-client real-time architecture.",
+            ],
+        },
+    },
+    {
+        title: "Bank Turnover Analyzer",
+        description:
+            "A full-stack financial data pipeline that automatically ingests bank e-statements via the Gmail API, parses transactions from PDF statements into PostgreSQL, and presents monthly/yearly reporting through a React dashboard.",
+        stack: "Python • FastAPI • PostgreSQL • React",
+        href: "https://github.com/Thanu-Venu/bank-turnover-analysis",
+        details: [
+            "Built a pipeline that fetches bank e-statements via the Gmail API and parses transactions from PDF statements into PostgreSQL.",
+            "Built a FastAPI backend and React dashboard for monthly/yearly reporting.",
+            "Wrote dedicated audit, deduplication, and ownership-assignment scripts with documented verification steps.",
+        ],
+        caseStudy: {
+            overview:
+                "Built to turn a manual, error-prone process — reading bank statement PDFs by hand — into an automated pipeline running on real financial data.",
+            challenge:
+                "Bank statement PDFs vary in layout, and duplicate or misattributed transactions were a real risk once statements arrived automatically via email rather than manual entry.",
+            approach: [
+                "Automated statement retrieval directly from Gmail via the Gmail API instead of manual downloads.",
+                "Built a PDF-parsing layer to extract transaction-level data into a structured PostgreSQL schema.",
+                "Wrote dedicated audit and deduplication scripts to catch parsing errors and duplicate entries before they reached reports.",
+            ],
+            architecture: [
+                "FastAPI and SQLAlchemy backend handling ingestion, parsing, and storage.",
+                "PostgreSQL schema modeling accounts, statements, and transactions.",
+                "React dashboard for monthly/yearly reporting and drill-down views.",
+            ],
+            outcomes: [
+                "Replaced manual statement review with an automated ingestion pipeline.",
+                "Improved data reliability through dedicated audit/deduplication tooling.",
+                "Delivered a working reporting dashboard over real financial data.",
+            ],
+        },
+    },
+    {
         title: "Mini Compiler (C)",
         description:
             "A mini compiler implemented in C that performs lexical analysis, parsing, and semantic validation. It demonstrates core compiler design concepts including recursive descent parsing and structured error handling.",
