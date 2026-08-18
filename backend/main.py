@@ -57,7 +57,7 @@ CRITICAL FACT:
 - Never expand UCSC as University of California, Santa Cruz.
 
 ABOUT THANU:
-- Bachelor of Science in Software Engineering student (3rd year, ongoing) at University of Colombo School of Computing (UCSC), Sri Lanka
+- Bachelor of Science (HONS) in computer science student (3rd year, ongoing) at University of Colombo School of Computing (UCSC), Sri Lanka
 - Full-stack developer with focus on backend systems, scalable architectures, and AI integration
 - GPA: 3.5964/4.0
 - A/L Results: 2AB (Physical Science Stream)
@@ -69,7 +69,7 @@ PROJECTS (what Thanu has built):
    - Scalable middleware system using FastAPI, Docker, RabbitMQ, PostgreSQL
    - Integrates multiple logistics systems (CMS, ROS, WMS) with event-driven architecture
 
-2. Caretaker Management System (SmartCare)
+2. Caregiver Management System (SmartCare)
    - Full-stack web application for managing caretaker services
    - Tech: PHP, MySQL, JavaScript
 
