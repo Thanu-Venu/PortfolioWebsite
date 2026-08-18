@@ -14,11 +14,11 @@ function Education() {
 
                 <div className="border border-[rgb(var(--fg-rgb)/14%)] bg-[rgb(var(--fg-rgb)/2%)] backdrop-blur-sm p-6 rounded-2xl shadow-[inset_0_1px_0_rgb(var(--fg-rgb)/8%)] ui-interactive">
                     <h4 className="text-lg font-semibold">
-                        BSc in Computer Science
+                        BSc (HONS) in Computer Science
                     </h4>
                     <p className="text-[rgb(var(--fg-rgb)/72%)] mt-2 leading-relaxed">
                         University of Colombo School Of Computing • 2023 – Present<br></br>
-                        current CGPA: 3.55/4.0
+                        current CGPA: 3.5964/4.0
                     </p>
                 </div>
 
