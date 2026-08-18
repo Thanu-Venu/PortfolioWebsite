@@ -59,7 +59,7 @@ CRITICAL FACT:
 ABOUT THANU:
 - Bachelor of Science in Software Engineering student (3rd year, ongoing) at University of Colombo School of Computing (UCSC), Sri Lanka
 - Full-stack developer with focus on backend systems, scalable architectures, and AI integration
-- GPA: 3.55/4.0
+- GPA: 3.5964/4.0
 - A/L Results: 2AB (Physical Science Stream)
 - O/L Results: 9A's (including English Literature)
 - Will graduate in 2027 or 2028
@@ -73,24 +73,41 @@ PROJECTS (what Thanu has built):
    - Full-stack web application for managing caretaker services
    - Tech: PHP, MySQL, JavaScript
 
-3. Mini Compiler
+3. DevFlow
+   - Full-stack task management platform with JWT-authenticated REST APIs
+   - Automated Jest/Supertest test suite run in CI, GitHub Actions CI/CD pipeline,
+     Prometheus/Grafana monitoring
+   - Tech: React, Node.js, MongoDB, Docker, GitHub Actions
+
+4. Smart Home Monitoring & Control System
+   - Real-time smart-home platform: native Android app + React web simulator
+     sharing one Firebase Realtime Database
+   - Per-device schedule automation and a safety-cutoff system
+   - Tech: Kotlin, Jetpack Compose, React, Firebase
+
+5. Bank Turnover Analyzer
+   - Full-stack financial data pipeline ingesting bank e-statements via the Gmail API
+   - Parses transactions from PDFs into PostgreSQL, with a React reporting dashboard
+   - Tech: Python, FastAPI, PostgreSQL, React
+
+6. Mini Compiler
    - Compiler built in C for lexical analysis, parsing, semantic validation
 
-4. Pub/Sub Messaging System
+7. Pub/Sub Messaging System
    - Command-line publish-subscribe system using socket programming
 
-5. Ludo Game Simulation
+8. Ludo Game Simulation
    - Console-based Ludo board game simulation in C
 
-6. 30-Day Web Development Challenge
+9. 30-Day Web Development Challenge
    - Collection of 30 mini projects
 
 TECHNICAL SKILLS:
-  - Languages: C, Python, JavaScript, PHP
-  - Frontend: React, Tailwind CSS
-  - Backend: FastAPI, PHP
-  - Databases: MySQL, PostgreSQL
-  - DevOps: Docker, Git, Linux
+  - Languages: C, C++, Python, JavaScript, TypeScript, PHP, Kotlin
+  - Frontend: React, Tailwind CSS, Jetpack Compose
+  - Backend: FastAPI, Node.js, PHP
+  - Databases: MySQL, PostgreSQL, MongoDB, Firebase Realtime Database
+  - DevOps & Testing: Docker, GitHub Actions CI/CD, Prometheus, Grafana, Jest/Supertest, Git, Linux
 
 CONTACT:
   📧 Email: thanu.venu28@gmail.com
@@ -161,6 +178,31 @@ def portfolio_fallback(user_message: str) -> str:
             "management features for caretaker services such as elder care and babysitting."
         )
 
+    if any(k in msg for k in ["devflow", "task management", "task manager"]):
+        return (
+            "DevFlow is a full-stack task management platform Thanu built with React, Node.js, "
+            "and MongoDB. It features JWT-authenticated REST APIs backed by an automated "
+            "Jest/Supertest test suite in CI, a GitHub Actions pipeline that independently builds, "
+            "tests, and deploys the frontend and backend, and Prometheus/Grafana monitoring on top "
+            "of a Docker Compose stack."
+        )
+
+    if any(k in msg for k in ["smart home", "smarthome", "iot", "android", "kotlin"]):
+        return (
+            "The Smart Home Monitoring & Control System pairs a native Android app (Kotlin, "
+            "Jetpack Compose, MVVM) with a React web simulator, both sharing one Firebase Realtime "
+            "Database so device state syncs live across clients. It includes per-device schedule "
+            "automation and a safety-cutoff system that auto-disables devices left on too long."
+        )
+
+    if any(k in msg for k in ["bank turnover", "turnover analyzer", "financial", "bank statement"]):
+        return (
+            "Bank Turnover Analyzer is a full-stack financial data pipeline Thanu built with "
+            "Python, FastAPI, and PostgreSQL. It automatically fetches bank e-statements via the "
+            "Gmail API, parses transactions out of the PDFs, and presents monthly/yearly reporting "
+            "through a React dashboard, backed by audit and deduplication tooling."
+        )
+
     if any(k in msg for k in ["mini compiler", "compiler", "lexical", "parsing"]):
         return (
             "Thanu's Mini Compiler project in C covers lexical analysis, parsing, and semantic "
@@ -201,15 +243,19 @@ def portfolio_fallback(user_message: str) -> str:
         return (
             "Here are Thanu's key projects: SwiftLogistics Middleware (FastAPI, Docker, "
             "RabbitMQ, PostgreSQL), SmartCare Caretaker Management System (PHP, MySQL, JS), "
-            "Mini Compiler in C, Pub/Sub Messaging System, Ludo Game Simulation, and a 30-Day "
-            "Web Development Challenge."
+            "DevFlow task management platform (React, Node.js, MongoDB, CI/CD, monitoring), "
+            "Smart Home Monitoring & Control System (Kotlin/Android + React, Firebase), "
+            "Bank Turnover Analyzer (Python, FastAPI, PostgreSQL), Mini Compiler in C, "
+            "Pub/Sub Messaging System, Ludo Game Simulation, and a 30-Day Web Development "
+            "Challenge."
         )
 
     if any(k in msg for k in ["skill", "tech", "stack", "language"]):
         return (
-            "Thanu's main skills include C, Python, JavaScript, PHP, React, Tailwind CSS, "
-            "FastAPI, MySQL, PostgreSQL, Docker, Git, and Linux. She is especially interested "
-            "in scalable backend systems and AI integration."
+            "Thanu's main skills include C, C++, Python, JavaScript, TypeScript, PHP, Kotlin, "
+            "React, Tailwind CSS, FastAPI, Node.js, MySQL, PostgreSQL, MongoDB, Firebase, "
+            "Docker, GitHub Actions CI/CD, Prometheus, Grafana, Jest/Supertest, Git, and Linux. "
+            "She is especially interested in scalable backend systems and AI integration."
         )
 
     if any(k in msg for k in ["education", "study", "gpa", "university", "degree"]):
