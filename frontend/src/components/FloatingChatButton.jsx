@@ -13,7 +13,7 @@ function FloatingChatButton() {
                     aria-label={open ? "Close chat" : "Open chat"}
                     className={`ui-interactive inline-flex h-14 w-14 items-center justify-center rounded-2xl border transition duration-300 ${open
                         ? "border-[color:var(--accent-gold)] bg-[color:var(--accent-gold)] text-[#141006] shadow-[0_16px_44px_rgba(198,169,107,0.4)]"
-                        : "border-white/10 bg-black/70 text-[#f3f3f3] shadow-[0_14px_34px_rgba(0,0,0,0.45)] hover:border-[color:var(--accent-gold-soft)]"
+                        : "border-[rgb(var(--fg-rgb)/10%)] bg-[rgb(var(--bg-rgb)/70%)] text-[#f3f3f3] shadow-[0_14px_34px_rgba(0,0,0,0.45)] hover:border-[color:var(--accent-gold-soft)]"
                         }`}
                 >
                     {!open && (
@@ -55,7 +55,7 @@ function FloatingChatButton() {
                 </button>
 
                 {!open && (
-                    <div className="pointer-events-none absolute right-[calc(100%+10px)] top-1/2 hidden w-64 -translate-y-1/2 rounded-xl border border-white/15 bg-black/85 px-3 py-2 text-xs leading-relaxed text-gray-200 opacity-0 shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 md:block">
+                    <div className="pointer-events-none absolute right-[calc(100%+10px)] top-1/2 hidden w-64 -translate-y-1/2 rounded-xl border border-[rgb(var(--fg-rgb)/14%)] bg-[rgb(var(--bg-rgb)/85%)] px-3 py-2 text-xs leading-relaxed text-[rgb(var(--fg-rgb)/80%)] opacity-0 shadow-[0_12px_30px_rgba(0,0,0,0.45)] transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 md:block">
                         Chat with my AI Assistant.
                     </div>
                 )}

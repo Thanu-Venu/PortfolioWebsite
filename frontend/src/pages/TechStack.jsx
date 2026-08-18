@@ -4,7 +4,7 @@ import { VscCode } from "react-icons/vsc";
 
 function TechStack() {
     return (
-        <section id="TechStack" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-gray-800/80">
+        <section id="TechStack" className="js-reveal section-reveal min-h-screen px-6 md:px-20 py-20 border-t border-[rgb(var(--fg-rgb)/12%)]">
 
             <h2 className="text-3xl md:text-5xl font-bold mb-12 tracking-tight stagger-item" style={{ "--reveal-delay": "60ms" }}>
                 Tech Stack
@@ -15,7 +15,7 @@ function TechStack() {
             <div className="grid md:grid-cols-2 gap-8">
 
                 {/* ===== Programming ===== */}
-                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive" style={{ "--reveal-delay": "180ms" }}>
+                <div className="stagger-item rounded-2xl border border-[rgb(var(--fg-rgb)/12%)] bg-[rgb(var(--bg-rgb)/30%)] p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgb(var(--fg-rgb)/5%)] ui-interactive" style={{ "--reveal-delay": "180ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Programming</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -31,7 +31,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Frontend ===== */}
-                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive" style={{ "--reveal-delay": "250ms" }}>
+                <div className="stagger-item rounded-2xl border border-[rgb(var(--fg-rgb)/12%)] bg-[rgb(var(--bg-rgb)/30%)] p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgb(var(--fg-rgb)/5%)] ui-interactive" style={{ "--reveal-delay": "250ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Frontend</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -47,7 +47,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Backend ===== */}
-                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive" style={{ "--reveal-delay": "320ms" }}>
+                <div className="stagger-item rounded-2xl border border-[rgb(var(--fg-rgb)/12%)] bg-[rgb(var(--bg-rgb)/30%)] p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgb(var(--fg-rgb)/5%)] ui-interactive" style={{ "--reveal-delay": "320ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Backend</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -62,7 +62,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== Databases ===== */}
-                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] ui-interactive" style={{ "--reveal-delay": "390ms" }}>
+                <div className="stagger-item rounded-2xl border border-[rgb(var(--fg-rgb)/12%)] bg-[rgb(var(--bg-rgb)/30%)] p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgb(var(--fg-rgb)/5%)] ui-interactive" style={{ "--reveal-delay": "390ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">Databases</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -75,7 +75,7 @@ function TechStack() {
                 </div>
 
                 {/* ===== DevOps ===== */}
-                <div className="stagger-item rounded-2xl border border-gray-800 bg-black/30 p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:col-span-2 ui-interactive" style={{ "--reveal-delay": "460ms" }}>
+                <div className="stagger-item rounded-2xl border border-[rgb(var(--fg-rgb)/12%)] bg-[rgb(var(--bg-rgb)/30%)] p-6 backdrop-blur-sm shadow-[inset_0_1px_0_rgb(var(--fg-rgb)/5%)] md:col-span-2 ui-interactive" style={{ "--reveal-delay": "460ms" }}>
                     <h3 className="text-xl font-semibold mb-5 tracking-wide">DevOps & Tools</h3>
                     <div className="flex flex-wrap gap-4">
                         {[
@@ -101,10 +101,10 @@ function TechStack() {
 function Card({ tech }) {
     return (
         <div className="flex flex-col items-center">
-            <div className="w-16 h-16 flex items-center justify-center bg-gray-950 rounded-xl border border-gray-700 hover:scale-105 hover:border-white hover:shadow-[0_0_18px_rgba(255,255,255,0.25)] text-2xl ui-interactive">
+            <div className="w-16 h-16 flex items-center justify-center bg-[rgb(var(--fg-rgb)/6%)] rounded-xl border border-[rgb(var(--fg-rgb)/16%)] hover:scale-105 hover:border-[rgb(var(--fg-rgb))] hover:shadow-[0_0_18px_rgb(var(--fg-rgb)/25%)] text-2xl ui-interactive">
                 {tech.icon}
             </div>
-            <p className="text-xs text-gray-300 mt-2 tracking-wide">{tech.name}</p>
+            <p className="text-xs text-[rgb(var(--fg-rgb)/72%)] mt-2 tracking-wide">{tech.name}</p>
         </div>
     );
 }

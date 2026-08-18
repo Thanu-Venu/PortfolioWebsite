@@ -1,7 +1,7 @@
 
 function About() {
     return (
-        <section id="About" className="js-reveal section-reveal px-6 md:px-20 py-20 border-t border-gray-800/80 flex flex-col md:flex-row md:items-center gap-10 md:gap-14">
+        <section id="About" className="js-reveal section-reveal px-6 md:px-20 py-20 border-t border-[rgb(var(--fg-rgb)/12%)] flex flex-col md:flex-row md:items-center gap-10 md:gap-14">
             {/* LEFT SIDE */}
             <div className="flex-1">
 
@@ -9,14 +9,14 @@ function About() {
                     About Me
                 </h2>
 
-                <p className="stagger-item text-gray-300 text-lg leading-relaxed max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive" style={{ "--reveal-delay": "160ms" }}>
+                <p className="stagger-item text-[rgb(var(--fg-rgb)/72%)] text-lg leading-relaxed max-w-xl rounded-2xl border border-[rgb(var(--fg-rgb)/10%)] bg-[rgb(var(--fg-rgb)/2%)] backdrop-blur-sm p-5 shadow-[inset_0_1px_0_rgb(var(--fg-rgb)/8%)] ui-interactive" style={{ "--reveal-delay": "160ms" }}>
                     I am a passionate Software Engineer with a strong interest in building
                     scalable applications and exploring AI-driven solutions. I enjoy working
                     on both frontend and backend technologies, creating seamless and efficient
                     user experiences.
                 </p>
 
-                <p className="stagger-item text-gray-300 text-lg leading-relaxed mt-6 max-w-xl rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] ui-interactive" style={{ "--reveal-delay": "250ms" }}>
+                <p className="stagger-item text-[rgb(var(--fg-rgb)/72%)] text-lg leading-relaxed mt-6 max-w-xl rounded-2xl border border-[rgb(var(--fg-rgb)/10%)] bg-[rgb(var(--fg-rgb)/2%)] backdrop-blur-sm p-5 shadow-[inset_0_1px_0_rgb(var(--fg-rgb)/8%)] ui-interactive" style={{ "--reveal-delay": "250ms" }}>
                     Currently, I am focusing on improving my skills in full-stack development
                     and learning more about machine learning and system design. I love solving
                     real-world problems through code and continuously pushing myself to learn
@@ -28,13 +28,13 @@ function About() {
             <div className="flex-1 flex justify-center md:justify-end md:pr-2 lg:pr-6">
                 <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 flex items-center justify-center stagger-item" style={{ "--reveal-delay": "220ms" }}>
                     <ProfileAura />
-                    <div className="absolute inset-0 rounded-full bg-white/10 blur-2xl orbit-float orbit-float-delayed"></div>
+                    <div className="absolute inset-0 rounded-full bg-[rgb(var(--fg-rgb)/10%)] blur-2xl orbit-float orbit-float-delayed"></div>
 
-                    <div className="relative z-10 p-[3px] rounded-full bg-black border border-white/60 shadow-[0_0_30px_rgba(255,255,255,0.35)] orbit-float">
+                    <div className="relative z-10 p-[3px] rounded-full bg-[rgb(var(--bg-rgb))] border border-[rgb(var(--fg-rgb)/45%)] shadow-[0_0_30px_rgb(var(--fg-rgb)/35%)] orbit-float">
                         <img
                             src="/profile.jpg"
                             alt="Profile"
-                            className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover rounded-full border border-white/70"
+                            className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover rounded-full border border-[rgb(var(--fg-rgb)/55%)]"
                         />
                     </div>
                 </div>

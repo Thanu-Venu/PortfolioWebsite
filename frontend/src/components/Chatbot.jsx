@@ -23,12 +23,12 @@ function renderInlineText(text, keyPrefix) {
         const key = `${keyPrefix}-${idx}`;
 
         if (part.startsWith("**") && part.endsWith("**")) {
-            return <strong key={key} className="font-semibold text-white">{part.slice(2, -2)}</strong>;
+            return <strong key={key} className="font-semibold text-[rgb(var(--fg-rgb))]">{part.slice(2, -2)}</strong>;
         }
 
         if (part.startsWith("`") && part.endsWith("`")) {
             return (
-                <code key={key} className="rounded bg-black/35 px-1.5 py-0.5 text-[12px] text-[#f1e5ca]">
+                <code key={key} className="rounded bg-[rgb(var(--bg-rgb)/35%)] px-1.5 py-0.5 text-[12px] text-[#f1e5ca]">
                     {part.slice(1, -1)}
                 </code>
             );
@@ -49,7 +49,7 @@ function renderStructuredText(text) {
 
         if (listType === "ol") {
             blocks.push(
-                <ol key={`list-${blocks.length}`} className="list-decimal space-y-1 pl-5 text-gray-100">
+                <ol key={`list-${blocks.length}`} className="list-decimal space-y-1 pl-5 text-[rgb(var(--fg-rgb)/88%)]">
                     {listItems.map((item, idx) => (
                         <li key={`item-${idx}`}>{renderInlineText(item, `ol-${blocks.length}-${idx}`)}</li>
                     ))}
@@ -57,7 +57,7 @@ function renderStructuredText(text) {
             );
         } else {
             blocks.push(
-                <ul key={`list-${blocks.length}`} className="list-disc space-y-1 pl-5 text-gray-100">
+                <ul key={`list-${blocks.length}`} className="list-disc space-y-1 pl-5 text-[rgb(var(--fg-rgb)/88%)]">
                     {listItems.map((item, idx) => (
                         <li key={`item-${idx}`}>{renderInlineText(item, `ul-${blocks.length}-${idx}`)}</li>
                     ))}
@@ -101,7 +101,7 @@ function renderStructuredText(text) {
         const headingMatch = line.match(/^#{1,4}\s+(.*)$/);
         if (headingMatch) {
             blocks.push(
-                <p key={`heading-${idx}`} className="font-semibold tracking-wide text-white">
+                <p key={`heading-${idx}`} className="font-semibold tracking-wide text-[rgb(var(--fg-rgb))]">
                     {renderInlineText(headingMatch[1], `heading-${idx}`)}
                 </p>
             );
@@ -109,7 +109,7 @@ function renderStructuredText(text) {
         }
 
         blocks.push(
-            <p key={`p-${idx}`} className="text-gray-100 leading-relaxed">
+            <p key={`p-${idx}`} className="text-[rgb(var(--fg-rgb)/88%)] leading-relaxed">
                 {renderInlineText(line, `p-${idx}`)}
             </p>
         );
@@ -130,7 +130,23 @@ function Chatbot() {
     const [lastReason, setLastReason] = useState("");
     const [metrics, setMetrics] = useState(null);
     const [showMetrics, setShowMetrics] = useState(false);
+    const [expanded, setExpanded] = useState(() => {
+        if (typeof window === "undefined") return false;
+        try {
+            return localStorage.getItem("chatExpanded") === "1";
+        } catch {
+            return false;
+        }
+    });
     const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        try {
+            localStorage.setItem("chatExpanded", expanded ? "1" : "0");
+        } catch {
+            // Storage may be unavailable (e.g. private browsing); ignore.
+        }
+    }, [expanded]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -226,36 +242,64 @@ function Chatbot() {
     };
 
     return (
-        <div className="flex flex-col h-[70vh] max-h-[500px] w-[calc(100vw-2rem)] max-w-sm sm:w-96 bg-black/95 sm:bg-black/80 backdrop-blur-none sm:backdrop-blur-xl rounded-2xl border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+        <div className={`flex flex-col ${expanded
+            ? "h-[85vh] max-h-[820px] w-[calc(100vw-2rem)] max-w-2xl sm:w-[560px] md:w-[640px]"
+            : "h-[70vh] max-h-[500px] w-[calc(100vw-2rem)] max-w-sm sm:w-96"
+            } bg-[rgb(var(--bg-rgb)/95%)] sm:bg-[rgb(var(--bg-rgb)/80%)] backdrop-blur-none sm:backdrop-blur-xl rounded-2xl border border-[rgb(var(--fg-rgb)/16%)] shadow-[0_20px_60px_rgba(0,0,0,0.6)] transition-[width,height] duration-300`}>
             {/* Header */}
-            <div className="border-b border-white/20 p-5 rounded-t-2xl bg-black/90 sm:bg-gradient-to-r sm:from-white/10 sm:to-white/5">
+            <div className="border-b border-[rgb(var(--fg-rgb)/16%)] p-5 rounded-t-2xl bg-[rgb(var(--bg-rgb)/90%)] sm:bg-gradient-to-r sm:from-[rgb(var(--fg-rgb)/10%)] sm:to-[rgb(var(--fg-rgb)/5%)]">
                 <div className="flex items-center justify-between gap-3">
                     <div>
                         <h3 className="text-lg font-semibold accent-text tracking-wide">Chat Assistant</h3>
-                        <p className="text-xs text-gray-400 mt-1">AI-powered assistance</p>
+                        <p className="text-xs text-[rgb(var(--fg-rgb)/58%)] mt-1">AI-powered assistance</p>
                     </div>
-                    <span
-                        className={`text-[10px] uppercase tracking-[0.14em] px-2.5 py-1 rounded-full border ${lastSource === "gemini"
-                            ? "border-emerald-400/50 text-emerald-300 bg-emerald-500/10"
-                            : "border-amber-400/50 text-amber-300 bg-amber-500/10"
-                            }`}
-                        title={lastReason ? `Fallback reason: ${lastReason}` : ""}
-                    >
-                        {lastSource === "gemini" ? "Gemini" : "Fallback"}
-                    </span>
+                    <div className="flex items-center gap-2 shrink-0">
+                        <button
+                            type="button"
+                            onClick={() => setExpanded((prev) => !prev)}
+                            aria-label={expanded ? "Compact chat window" : "Expand chat window"}
+                            title={expanded ? "Compact view" : "Expand view for easier reading"}
+                            className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[rgb(var(--fg-rgb)/16%)] text-[rgb(var(--fg-rgb)/72%)] hover:text-[rgb(var(--fg-rgb))] hover:border-[rgb(var(--fg-rgb)/30%)] ui-interactive"
+                        >
+                            {expanded ? (
+                                <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <path d="M12 8h4V4" />
+                                    <path d="M8 12H4v4" />
+                                    <path d="M16 4l-5 5" />
+                                    <path d="M4 16l5-5" />
+                                </svg>
+                            ) : (
+                                <svg viewBox="0 0 20 20" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                                    <path d="M8 4H4v4" />
+                                    <path d="M12 16h4v-4" />
+                                    <path d="M4 4l5 5" />
+                                    <path d="M16 16l-5-5" />
+                                </svg>
+                            )}
+                        </button>
+                        <span
+                            className={`text-[10px] uppercase tracking-[0.14em] px-2.5 py-1 rounded-full border ${lastSource === "gemini"
+                                ? "border-emerald-400/50 text-emerald-300 bg-emerald-500/10"
+                                : "border-amber-400/50 text-amber-300 bg-amber-500/10"
+                                }`}
+                            title={lastReason ? `Fallback reason: ${lastReason}` : ""}
+                        >
+                            {lastSource === "gemini" ? "Gemini" : "Fallback"}
+                        </span>
+                    </div>
                 </div>
                 <button
                     onClick={() => setShowMetrics((prev) => !prev)}
-                    className="mt-3 text-[10px] uppercase tracking-[0.12em] text-gray-300 hover:text-white"
+                    className="mt-3 text-[10px] uppercase tracking-[0.12em] text-[rgb(var(--fg-rgb)/72%)] hover:text-[rgb(var(--fg-rgb))]"
                 >
                     {showMetrics ? "Hide Usage" : "Show Usage"}
                 </button>
                 {showMetrics && metrics && (
-                    <div className="mt-2 grid grid-cols-2 gap-2 text-[10px] text-gray-300">
-                        <div className="rounded-lg border border-white/15 px-2 py-1">Req: {metrics.total_requests}</div>
-                        <div className="rounded-lg border border-white/15 px-2 py-1">Gemini: {metrics.gemini_responses}</div>
-                        <div className="rounded-lg border border-white/15 px-2 py-1">Fallback: {metrics.fallback_responses}</div>
-                        <div className="rounded-lg border border-white/15 px-2 py-1">Cache: {metrics.cache_hits}</div>
+                    <div className="mt-2 grid grid-cols-2 gap-2 text-[10px] text-[rgb(var(--fg-rgb)/72%)]">
+                        <div className="rounded-lg border border-[rgb(var(--fg-rgb)/14%)] px-2 py-1">Req: {metrics.total_requests}</div>
+                        <div className="rounded-lg border border-[rgb(var(--fg-rgb)/14%)] px-2 py-1">Gemini: {metrics.gemini_responses}</div>
+                        <div className="rounded-lg border border-[rgb(var(--fg-rgb)/14%)] px-2 py-1">Fallback: {metrics.fallback_responses}</div>
+                        <div className="rounded-lg border border-[rgb(var(--fg-rgb)/14%)] px-2 py-1">Cache: {metrics.cache_hits}</div>
                     </div>
                 )}
             </div>
@@ -272,12 +316,12 @@ function Chatbot() {
                                 ? "bg-[#8f6f32] text-[#fffdf5] sm:bg-gradient-to-r sm:from-[var(--accent-gold)] sm:to-[#d4b97e] sm:text-black font-medium rounded-br-none shadow-[0_8px_24px_rgba(198,169,107,0.2)]"
                                 : msg.isError
                                     ? "bg-red-600/40 border border-red-500/50 text-red-100 rounded-bl-none"
-                                    : "bg-white/25 sm:bg-white/20 border border-white/30 text-gray-50 rounded-bl-none"
+                                    : "bg-[rgb(var(--fg-rgb)/25%)] sm:bg-[rgb(var(--fg-rgb)/20%)] border border-[rgb(var(--fg-rgb)/22%)] text-[rgb(var(--fg-rgb)/94%)] rounded-bl-none"
                                 }`}
                         >
                             {msg.sender === "bot" && !msg.isError ? renderStructuredText(msg.text) : msg.text}
                             {msg.sender === "bot" && msg.source && (
-                                <div className="mt-2 text-[10px] tracking-[0.12em] uppercase text-gray-300/90">
+                                <div className="mt-2 text-[10px] tracking-[0.12em] uppercase text-[rgb(var(--fg-rgb)/62%)]">
                                     Source: {msg.source === "gemini" ? "Gemini" : "Fallback"}
                                 </div>
                             )}
@@ -286,11 +330,11 @@ function Chatbot() {
                 ))}
                 {loading && (
                     <div className="flex justify-start">
-                        <div className="bg-white/25 sm:bg-white/20 border border-white/30 px-4 py-3 rounded-2xl rounded-bl-none">
+                        <div className="bg-[rgb(var(--fg-rgb)/25%)] sm:bg-[rgb(var(--fg-rgb)/20%)] border border-[rgb(var(--fg-rgb)/22%)] px-4 py-3 rounded-2xl rounded-bl-none">
                             <div className="flex gap-1.5">
-                                <div className="h-2 w-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "0s" }}></div>
-                                <div className="h-2 w-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
-                                <div className="h-2 w-2 bg-gray-300 rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
+                                <div className="h-2 w-2 bg-[rgb(var(--fg-rgb)/70%)] rounded-full animate-bounce" style={{ animationDelay: "0s" }}></div>
+                                <div className="h-2 w-2 bg-[rgb(var(--fg-rgb)/70%)] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }}></div>
+                                <div className="h-2 w-2 bg-[rgb(var(--fg-rgb)/70%)] rounded-full animate-bounce" style={{ animationDelay: "0.4s" }}></div>
                             </div>
                         </div>
                     </div>
@@ -299,9 +343,9 @@ function Chatbot() {
             </div>
 
             {/* Input */}
-            <div className="border-t border-white/20 p-4 bg-black/85 sm:bg-gradient-to-t sm:from-white/5 sm:to-transparent rounded-b-2xl">
+            <div className="border-t border-[rgb(var(--fg-rgb)/16%)] p-4 bg-[rgb(var(--bg-rgb)/85%)] sm:bg-gradient-to-t sm:from-[rgb(var(--fg-rgb)/5%)] sm:to-transparent rounded-b-2xl">
                 <div className="mb-3">
-                    <p className="mb-2 text-[10px] uppercase tracking-[0.14em] text-gray-400">Quick Topics</p>
+                    <p className="mb-2 text-[10px] uppercase tracking-[0.14em] text-[rgb(var(--fg-rgb)/58%)]">Quick Topics</p>
                     <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                         {QUICK_PROMPTS.map((prompt) => (
                             <button
@@ -309,7 +353,7 @@ function Chatbot() {
                                 type="button"
                                 onClick={() => handleQuickPrompt(prompt)}
                                 disabled={loading}
-                                className="shrink-0 rounded-full border border-white/20 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.1em] text-gray-300 hover:text-white hover:border-white/45 ui-interactive disabled:opacity-40 disabled:cursor-not-allowed"
+                                className="shrink-0 rounded-full border border-[rgb(var(--fg-rgb)/16%)] bg-[rgb(var(--fg-rgb)/4%)] px-3 py-1.5 text-[11px] uppercase tracking-[0.1em] text-[rgb(var(--fg-rgb)/72%)] hover:text-[rgb(var(--fg-rgb))] hover:border-[rgb(var(--fg-rgb)/30%)] ui-interactive disabled:opacity-40 disabled:cursor-not-allowed"
                             >
                                 {prompt}
                             </button>
@@ -325,7 +369,7 @@ function Chatbot() {
                         onKeyDown={(e) => e.key === "Enter" && !loading && handleSend()}
                         placeholder="Type your message..."
                         disabled={loading}
-                        className="flex-1 bg-white/20 sm:bg-white/15 border border-white/30 rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-300 focus:outline-none focus:border-[var(--accent-gold)]/60 focus:bg-white/25 sm:focus:bg-white/20 transition-all disabled:opacity-50"
+                        className="flex-1 bg-[rgb(var(--fg-rgb)/20%)] sm:bg-[rgb(var(--fg-rgb)/15%)] border border-[rgb(var(--fg-rgb)/22%)] rounded-xl px-4 py-2.5 text-[rgb(var(--fg-rgb))] text-sm placeholder-[rgb(var(--fg-rgb)/55%)] focus:outline-none focus:border-[var(--accent-gold)]/60 focus:bg-[rgb(var(--fg-rgb)/25%)] sm:focus:bg-[rgb(var(--fg-rgb)/20%)] transition-all disabled:opacity-50"
                     />
                     <button
                         type="button"
