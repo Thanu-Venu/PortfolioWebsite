@@ -419,6 +419,11 @@ body {
   .case-study-scroll {
     -webkit-overflow-scrolling: touch;
   }
+
+  .orbit-float,
+  .orbit-float-delayed {
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
